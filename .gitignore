@@ -1,0 +1,8 @@
+# Local review copies and scratch work never ship
+review/
+# The live order database stays on the server
+data/*.db
+data/*.db-*
+node_modules/
+.DS_Store
+*.zip

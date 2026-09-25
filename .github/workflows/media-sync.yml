@@ -1,0 +1,53 @@
+name: Media sync
+
+# Pulls generated media (Higgsfield) and reference pages into the repo.
+# Triggered when the media manifest or the reference list changes.
+on:
+  push:
+    paths:
+      - 'media/manifest.json'
+      - 'media/reference-urls.txt'
+      - 'media/*.mjs'
+      - '.github/workflows/media-sync.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: media-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Download media listed in the manifest
+        run: node media/sync.mjs
+
+      - name: Capture reference pages
+        continue-on-error: true
+        run: |
+          npm install playwright@1.49.1 --no-save --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          node media/capture.mjs
+
+      - name: Commit new files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media/raw media/reference 2>/dev/null || true
+          if git diff --cached --quiet; then echo "Nothing new."; exit 0; fi
+          git commit -m "Sync media and reference captures"
+          for i in 1 2 3 4; do
+            git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
+            sleep $((i * 4))
+          done
+          exit 1

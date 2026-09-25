@@ -1,0 +1,2 @@
+# One URL per line, optional slug after a space. Captured by .github/workflows/media-sync.yml
+https://pedido.brendi.com.br/ditos-lanches-centro/ brendi-centro
