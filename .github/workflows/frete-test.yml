@@ -3,6 +3,11 @@ name: Frete test
 # Testa o cálculo do frete com CEPs reais (os serviços de CEP ficam bloqueados no ambiente de desenvolvimento).
 on:
   workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Mostrar detalhes do mapa quando o frete não sai pela distância (1 = sim)'
+        required: false
+        default: ''
 
 jobs:
   test:
@@ -14,3 +19,5 @@ jobs:
         with:
           node-version: 22
       - run: node tools/test-frete.mjs
+        env:
+          FRETE_DEBUG: ${{ inputs.debug }}
