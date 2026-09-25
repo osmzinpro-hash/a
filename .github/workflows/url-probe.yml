@@ -1,0 +1,25 @@
+name: URL probe
+
+# Testa endereços candidatos (código HTTP, redirecionamento e título da página).
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'Endereços separados por espaço'
+        required: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Probe
+        env:
+          URLS: ${{ inputs.urls }}
+        run: |
+          for u in $URLS; do
+            read -r code loc < <(curl -s -o /tmp/p.html -w '%{http_code} %{redirect_url}\n' --max-time 10 "$u")
+            title=$(grep -o '<title>[^<]*' /tmp/p.html 2>/dev/null | head -1 | sed 's/<title>//')
+            health=$(curl -s --max-time 10 "${u%/}/api/health" | head -c 80)
+            echo "$u -> $code ${loc:+→ $loc} | $title | health: $health"
+          done
