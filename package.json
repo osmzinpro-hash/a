@@ -5,10 +5,13 @@
   "description": "Site com pedidos online, banco de dados e entrega da Ditos Lanches (São Mateus, ES)",
   "type": "module",
   "engines": {
-    "node": ">=22.5"
+    "node": "22.x"
   },
   "scripts": {
     "start": "node --disable-warning=ExperimentalWarning server.js",
     "dev": "node --disable-warning=ExperimentalWarning --watch server.js"
+  },
+  "dependencies": {
+    "pg": "^8.13.0"
   }
 }

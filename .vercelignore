@@ -1,0 +1,7 @@
+media/
+review/
+docs/
+tools/
+*.zip
+data/*.db
+data/*.db-*
