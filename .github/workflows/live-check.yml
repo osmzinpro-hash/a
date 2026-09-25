@@ -34,6 +34,11 @@ jobs:
           menu=$(curl -s "$SITE/api/menu" | python3 -c "import json,sys; d=json.load(sys.stdin); print(f\"{len(d['products'])} lanches, {len(d['neighborhoods'])} bairros, loja: {d['store']['message']}, pagamentos: {', '.join(p['id'] for p in d['store']['payments'])}\")" 2>&1)
           row "/api/menu" "$menu"
           echo
+          echo "== Frete pelo CEP"
+          for c in 29936050 29937030 29940110 29900000; do
+            row "CEP $c" "$(curl -s "$SITE/api/frete?cep=$c&numero=100" | head -c 220)"
+          done
+          echo
           echo "== Peso da página sem o vídeo"
           total=0
           for f in / /assets/css/site.css /assets/js/site.js /assets/js/store.js /assets/img/logo.webp /assets/fonts/dela-gothic-one-latin-400-normal.woff2 /assets/fonts/figtree-latin-400-normal.woff2 /assets/fonts/figtree-latin-800-normal.woff2 /assets/fonts/dm-mono-latin-500-normal.woff2; do

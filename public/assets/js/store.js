@@ -362,8 +362,8 @@
   const cepDigits = v => String(v || '').replace(/\D/g, '').slice(0, 8);
   const maskCep = input => { const d = cepDigits(input.value); input.value = d.length > 5 ? `${d.slice(0, 5)}-${d.slice(5)}` : d; };
 
-  async function fetchQuote(cep, number = '') {
-    const res = await fetch(`/api/frete?cep=${cep}&numero=${encodeURIComponent(number)}`, { headers: { accept: 'application/json' } });
+  async function fetchQuote(cep) {
+    const res = await fetch(`/api/frete?cep=${cep}`, { headers: { accept: 'application/json' } });
     const data = await res.json().catch(() => ({ ok: false, error: 'Não deu para calcular agora. Tente de novo.' }));
     if (res.status === 404) throw new Error('offline');
     return data;
@@ -383,7 +383,6 @@
     const f = form();
     const status = $('[data-cep-status]', f);
     const cep = cepDigits(f.elements.cep.value);
-    const number = f.elements.number.value.trim();
     if (cep.length !== 8) {
       Object.assign(freight, { status: 'idle', key: '', data: null });
       status.className = 'cep-status';
@@ -391,14 +390,14 @@
       syncFulfillment();
       return;
     }
-    const key = `${cep}|${number.replace(/\D/g, '')}`;
+    const key = cep;
     if (key === freight.key && freight.status !== 'error') return;
     Object.assign(freight, { status: 'busy', key });
     status.className = 'cep-status is-busy';
     status.textContent = 'Calculando o frete...';
     updateTotals();
     try {
-      const q = await fetchQuote(cep, number);
+      const q = await fetchQuote(cep);
       if (freight.key !== key) return; // chegou resposta de um CEP antigo
       freight.data = q;
       freight.status = q.ok ? 'ok' : 'error';
@@ -603,7 +602,6 @@
     const f = form();
     f.addEventListener('change', e => { if (['fulfillment', 'payment'].includes(e.target.name)) syncFulfillment(); });
     f.elements.cep.addEventListener('input', e => { maskCep(e.target); requestQuote(cepDigits(e.target.value).length === 8 ? 0 : 300); });
-    f.elements.number.addEventListener('input', () => { if (cepDigits(f.elements.cep.value).length === 8) requestQuote(800); });
 
     // Calculadora de frete na seção de entrega da página
     const calc = $('[data-freight-calc]');
