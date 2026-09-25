@@ -1,0 +1,43 @@
+name: Live check
+
+# Confere o site publicado: páginas, API, banco e tempos de carregamento.
+# Rode em Actions → Live check → Run workflow, informando o endereço.
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Endereço do site (ex.: https://ditos-lanches.vercel.app)'
+        required: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check pages, API and speed
+        env:
+          SITE: ${{ inputs.url }}
+        run: |
+          SITE="${SITE%/}"
+          fail=0
+          row() { printf '%-28s %s\n' "$1" "$2"; }
+          echo "== Páginas"
+          for path in / /admin /pedido/TESTE123 /assets/css/site.css /assets/js/site.js /assets/js/store.js /assets/img/hero-poster.jpg /assets/video/hero-scrub.webm /assets/video/hero-scrub.mp4 /assets/data/menu.json; do
+            read -r code ttfb total size < <(curl -s -o /dev/null -w '%{http_code} %{time_starttransfer} %{time_total} %{size_download}\n' "$SITE$path")
+            row "$path" "HTTP $code · TTFB ${ttfb}s · total ${total}s · $(( size / 1024 )) KB"
+            [ "$code" = "200" ] || { echo "   ^ esperado 200"; fail=1; }
+          done
+          echo
+          echo "== API"
+          health=$(curl -s "$SITE/api/health"); row "/api/health" "$health"
+          echo "$health" | grep -q '"db":"pg"' || { echo "   ^ banco Postgres não conectado"; fail=1; }
+          menu=$(curl -s "$SITE/api/menu" | python3 -c "import json,sys; d=json.load(sys.stdin); print(f\"{len(d['products'])} lanches, {len(d['neighborhoods'])} bairros, loja: {d['store']['message']}, pagamentos: {', '.join(p['id'] for p in d['store']['payments'])}\")" 2>&1)
+          row "/api/menu" "$menu"
+          echo
+          echo "== Peso da página sem o vídeo"
+          total=0
+          for f in / /assets/css/site.css /assets/js/site.js /assets/js/store.js /assets/img/logo.webp /assets/fonts/dela-gothic-one-latin-400-normal.woff2 /assets/fonts/figtree-latin-400-normal.woff2 /assets/fonts/figtree-latin-800-normal.woff2 /assets/fonts/dm-mono-latin-500-normal.woff2; do
+            s=$(curl -s --compressed -o /dev/null -w '%{size_download}' "$SITE$f"); total=$((total + s))
+          done
+          row "HTML+CSS+JS+fontes+logo" "$(( total / 1024 )) KB (transferido)"
+          exit $fail
