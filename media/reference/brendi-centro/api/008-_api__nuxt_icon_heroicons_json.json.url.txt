@@ -1,0 +1,1 @@
+https://pedido.brendi.com.br/api/_nuxt_icon/heroicons.json?icons=ticket-solid

@@ -1,0 +1,1 @@
+https://pedido.brendi.com.br/api/ditos-lanches-centro/analytics/events
