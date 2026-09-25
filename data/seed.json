@@ -1,0 +1,1288 @@
+{
+  "source": "Cardápio importado de pedido.brendi.com.br/ditos-lanches-centro",
+  "settings": {
+    "store_name": "Ditos Lanches",
+    "address": "Av. Dr. Raimundo Guilherme Sobrinho, 469, Centro, São Mateus - ES",
+    "address_2": "",
+    "phone": "",
+    "whatsapp": "",
+    "instagram": "ditoslanches",
+    "hours_label": "Terça a domingo, das 18h às 23h",
+    "open_days": "0,2,3,4,5,6",
+    "open_time": "18:00",
+    "close_time": "23:00",
+    "store_mode": "auto",
+    "closed_message": "A chapa está desligada agora. Abrimos de terça a domingo, às 18h.",
+    "min_order": 20.0,
+    "delivery_enabled": "1",
+    "pickup_enabled": "1",
+    "pickup_eta": "15 a 25 min",
+    "pix_enabled": "1",
+    "pix_key": "",
+    "pix_name": "Ditos Lanches",
+    "pix_city": "Sao Mateus",
+    "avg_prep": "20 a 35 min"
+  },
+  "groups": [
+    {
+      "id": "vamos-turbinar-seu-xis",
+      "title": "Vamos Turbinar seu Xis",
+      "type": "qty",
+      "min": 0,
+      "max": 8,
+      "options": [
+        {
+          "title": "Extra Hambúrguer 100g",
+          "price": 12.0,
+          "max": 8
+        },
+        {
+          "title": "Costela Desfiada 100g",
+          "price": 12.0,
+          "max": 8
+        },
+        {
+          "title": "Muçarela Fatia",
+          "price": 4.0,
+          "max": 8
+        },
+        {
+          "title": "2x Fatia de Bacon",
+          "price": 7.0,
+          "max": 8
+        },
+        {
+          "title": "Carne Seca Desfiada",
+          "price": 13.0,
+          "max": 8
+        },
+        {
+          "title": "Muçarela empanada",
+          "price": 13.0,
+          "max": 8
+        },
+        {
+          "title": "Queijo Coalho Grelhado",
+          "price": 10.0,
+          "max": 8
+        },
+        {
+          "title": "Cheddar Fatia",
+          "price": 5.0,
+          "max": 8
+        },
+        {
+          "title": "Cream Cheese",
+          "price": 6.0,
+          "max": 8
+        },
+        {
+          "title": "Cebola Caramelizada",
+          "price": 6.0,
+          "max": 8
+        },
+        {
+          "title": "Abacaxi Caramelizado no mel",
+          "price": 5.0,
+          "max": 8
+        },
+        {
+          "title": "Ovo Frito",
+          "price": 3.0,
+          "max": 8
+        },
+        {
+          "title": "Cebola Roxa",
+          "price": 2.0,
+          "max": 8
+        },
+        {
+          "title": "Picles",
+          "price": 4.0,
+          "max": 8
+        },
+        {
+          "title": "Banana Frita",
+          "price": 3.0,
+          "max": 8
+        }
+      ]
+    },
+    {
+      "id": "escolha-o-tamanho-da-batata",
+      "title": "Escolha o tamanho da batata",
+      "type": "one",
+      "min": 1,
+      "max": 1,
+      "options": [
+        {
+          "title": "Pequena",
+          "price": 17.0,
+          "max": 1
+        },
+        {
+          "title": "Grande",
+          "price": 39.0,
+          "max": 1
+        }
+      ]
+    },
+    {
+      "id": "como-quer-sua-batata",
+      "title": "Como quer Sua Batata",
+      "type": "many",
+      "min": 2,
+      "max": 2,
+      "options": [
+        {
+          "title": "Cheddar",
+          "price": 0.0,
+          "max": 2
+        },
+        {
+          "title": "Catupiry",
+          "price": 0.0,
+          "max": 2
+        },
+        {
+          "title": "Carne Seca Desfiada",
+          "price": 10.0,
+          "max": 2
+        },
+        {
+          "title": "Costela Desfiada",
+          "price": 8.0,
+          "max": 2
+        },
+        {
+          "title": "Bacon Crispy",
+          "price": 0.0,
+          "max": 2
+        }
+      ]
+    },
+    {
+      "id": "adicionais",
+      "title": "Adicionais",
+      "type": "qty",
+      "min": 0,
+      "max": 8,
+      "options": [
+        {
+          "title": "Hambúrguer 100g + Cheddar",
+          "price": 12.0,
+          "max": 8
+        },
+        {
+          "title": "Hambúrguer 200g + Cheddar",
+          "price": 17.0,
+          "max": 8
+        },
+        {
+          "title": "Costela Desfiada 100g",
+          "price": 12.0,
+          "max": 8
+        },
+        {
+          "title": "2x Fatia de Bacon",
+          "price": 7.0,
+          "max": 8
+        },
+        {
+          "title": "Carne Seca Desfiada",
+          "price": 13.0,
+          "max": 8
+        },
+        {
+          "title": "Frango Empanado",
+          "price": 12.0,
+          "max": 8
+        },
+        {
+          "title": "Muçarela empanada",
+          "price": 13.0,
+          "max": 8
+        },
+        {
+          "title": "Queijo Coalho Grelhado",
+          "price": 10.0,
+          "max": 8
+        },
+        {
+          "title": "Cheddar Fatia",
+          "price": 5.0,
+          "max": 8
+        },
+        {
+          "title": "Cream Cheese",
+          "price": 6.0,
+          "max": 8
+        },
+        {
+          "title": "Anéis de cebola",
+          "price": 6.0,
+          "max": 8
+        },
+        {
+          "title": "Cebola Caramelizada",
+          "price": 6.0,
+          "max": 8
+        },
+        {
+          "title": "Abacaxi Caramelizado no mel",
+          "price": 5.0,
+          "max": 8
+        },
+        {
+          "title": "Ovo Frito",
+          "price": 3.0,
+          "max": 8
+        },
+        {
+          "title": "Cebola Roxa",
+          "price": 2.0,
+          "max": 8
+        },
+        {
+          "title": "Picles",
+          "price": 4.0,
+          "max": 8
+        },
+        {
+          "title": "Banana Frita",
+          "price": 3.0,
+          "max": 8
+        }
+      ]
+    },
+    {
+      "id": "escolha-sua-bebida",
+      "title": "Escolha Sua Bebida",
+      "type": "one",
+      "min": 1,
+      "max": 1,
+      "options": [
+        {
+          "title": "Coca-Cola 350ml",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Coca-Cola Zero 350ml",
+          "price": 0.0,
+          "max": 1
+        }
+      ]
+    },
+    {
+      "id": "escolha-o-sabor",
+      "title": "Escolha o Sabor",
+      "type": "one",
+      "min": 1,
+      "max": 1,
+      "options": [
+        {
+          "title": "Doce de leite",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Chocolate",
+          "price": 0.0,
+          "max": 1
+        }
+      ]
+    },
+    {
+      "id": "escolha-o-sabor-2",
+      "title": "Escolha o Sabor",
+      "type": "one",
+      "min": 1,
+      "max": 1,
+      "options": [
+        {
+          "title": "Laranja",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Frutas Vermelhas",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Maracujá",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Manga",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Graviola",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Abacaxi Com Hortelã",
+          "price": 0.0,
+          "max": 1
+        }
+      ]
+    },
+    {
+      "id": "escolha-sua-bebida-2",
+      "title": "Escolha sua Bebida",
+      "type": "one",
+      "min": 1,
+      "max": 1,
+      "options": [
+        {
+          "title": "Coca-Cola 350ml",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Coca-Cola Zero 350ml",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Sprite 350ml",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Fanta Uva 350ml",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Fanta Laranja 350ml",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Schweppes Citrus",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Guaraná Antarctica Zero 350ml",
+          "price": 0.0,
+          "max": 1
+        }
+      ]
+    },
+    {
+      "id": "escolha-o-sabor-3",
+      "title": "Escolha o sabor",
+      "type": "one",
+      "min": 1,
+      "max": 1,
+      "options": [
+        {
+          "title": "Coca-Cola 600ml",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Coca-Cola Zero 600ml",
+          "price": 0.0,
+          "max": 1
+        }
+      ]
+    },
+    {
+      "id": "escolha-o-sabor-4",
+      "title": "Escolha o sabor",
+      "type": "one",
+      "min": 1,
+      "max": 1,
+      "options": [
+        {
+          "title": "Coca-Cola 1,5L",
+          "price": 0.0,
+          "max": 1
+        },
+        {
+          "title": "Coca-Cola Zero 1,5L",
+          "price": 0.0,
+          "max": 1
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "combos",
+      "name": "Combos pra dividir",
+      "blurb": "Pra mesa inteira, ou pra quem está com muita fome.",
+      "products": [
+        {
+          "slug": "combo-casal-classico",
+          "name": "Combo Casal Clássico",
+          "description": "2 Clássicos + Fritas cheddar e bacon + Anéis de cebola.",
+          "price": 89.0,
+          "image": "assets/menu/combo-casal-classico.webp",
+          "groups": []
+        },
+        {
+          "slug": "combo-mini-especial",
+          "name": "Combo Mini Especial",
+          "description": "8 Mini burgers: Pão, mini bife artesanal, cheddar e maionese de bacon. + Fritas cheddar e bacon + Salgadinhos + Mini churros",
+          "price": 109.0,
+          "image": "assets/menu/combo-mini-especial.webp",
+          "groups": []
+        },
+        {
+          "slug": "combo-triplo",
+          "name": "Combo Triplo",
+          "description": "3 Fininho Bacon + Fritas cheddar e Bacon + 6 unidades de Nuggets + 10 unidades de mini churros doce de leite.",
+          "price": 115.0,
+          "image": "assets/menu/combo-triplo.webp",
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "xis",
+      "name": "Linha Xis",
+      "blurb": "O podrão tradicional, no pão de hambúrguer, com ovo e maionese verde.",
+      "products": [
+        {
+          "slug": "xis-salada",
+          "name": "Xis Salada",
+          "description": "Pão hambúrguer, carne 100g, muçarela fatia, ovo, maionese verde, alface e tomate.",
+          "price": 30.0,
+          "image": "assets/menu/xis-salada.webp",
+          "groups": [
+            "vamos-turbinar-seu-xis"
+          ]
+        },
+        {
+          "slug": "xis-bacon",
+          "name": "Xis Bacon",
+          "description": "pão hambúrguer, carne 100g, muçarela fatia, bacon, ovo, maionese verde, alface e tomate.",
+          "price": 35.0,
+          "image": "assets/menu/xis-bacon.webp",
+          "groups": [
+            "vamos-turbinar-seu-xis"
+          ]
+        },
+        {
+          "slug": "xis-costela",
+          "name": "Xis Costela",
+          "description": "pão hambúrguer, carne 100g, muçarela fatia, costela desfiada, ovo, maionese verde, alface e tomate.",
+          "price": 40.0,
+          "image": "assets/menu/xis-costela.webp",
+          "groups": [
+            "vamos-turbinar-seu-xis"
+          ]
+        },
+        {
+          "slug": "xis-duplo",
+          "name": "Xis Duplo",
+          "description": "pão hambúrguer, 2 carne 100g, 2 muçarela fatia, 2 bacon, 2 ovo, maionese verde, alface e tomate.",
+          "price": 55.0,
+          "image": "assets/menu/xis-duplo.webp",
+          "groups": [
+            "vamos-turbinar-seu-xis"
+          ]
+        },
+        {
+          "slug": "xis-file-de-frango",
+          "name": "Xis Filé de Frango",
+          "description": "Pão hambúrguer, 200g filé de frango, muçarela fatia, bacon, ovo, maionese verde, alface e tomate.",
+          "price": 39.0,
+          "image": "assets/menu/xis-file-de-frango.webp",
+          "groups": []
+        },
+        {
+          "slug": "xis-file-mignon",
+          "name": "Xis Filé Mignon",
+          "description": "Pão hambúrguer, 200g filé mignon, muçarela fatia, bacon, ovo, maionese verde, alface e tomate.",
+          "price": 59.0,
+          "image": "assets/menu/xis-file-mignon.webp",
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "entradas",
+      "name": "Entradas e porções",
+      "blurb": "Batata, coxinha, anéis de cebola. Pra começar ou pra acompanhar.",
+      "products": [
+        {
+          "slug": "batata-frita",
+          "name": "Batata Frita",
+          "description": "Batatas fritas crocantes e douradinhas na medida certa. Uma porção perfeita para matar a vontade e deixar qualquer momento mais gostoso. Pequena: 120g Grande: 300g",
+          "price": 0.0,
+          "image": "assets/menu/batata-frita.webp",
+          "groups": [
+            "escolha-o-tamanho-da-batata"
+          ]
+        },
+        {
+          "slug": "batata-turbinada",
+          "name": "Batata Turbinada",
+          "description": "Uma generosa porção com 300g de batatas fritas crocantes e douradas, coberta com o complemento da sua escolha. Perfeita para compartilhar e transformar qualquer momento em uma verdadeira experiência de sabor",
+          "price": 50.0,
+          "image": "assets/menu/batata-turbinada.webp",
+          "groups": [
+            "como-quer-sua-batata"
+          ]
+        },
+        {
+          "slug": "frango-crocante-com-fritas",
+          "name": "Frango Crocante com fritas",
+          "description": "500g de iscas de frango empanadas acompanhadas de 300g de batata frita.",
+          "price": 79.0,
+          "image": "assets/menu/frango-crocante-com-fritas.webp",
+          "groups": []
+        },
+        {
+          "slug": "combo-de-mini-salgadinhos",
+          "name": "Combo de Mini Salgadinhos",
+          "description": "Box de mini salgadinhos (coxinha de frango) com cerca de 1kg",
+          "price": 79.0,
+          "image": "assets/menu/combo-de-mini-salgadinhos.webp",
+          "groups": []
+        },
+        {
+          "slug": "copo-de-10-mini-coxinha-de-frango",
+          "name": "Copo de 10 Mini Coxinha de frango",
+          "description": "Copo com 10 mini Coxinha de frango",
+          "price": 14.9,
+          "image": "assets/menu/copo-de-10-mini-coxinha-de-frango.webp",
+          "groups": []
+        },
+        {
+          "slug": "aneis-de-cebola",
+          "name": "Anéis de cebola",
+          "description": "10 anéis de cebola selecionados, empanados e fritos até ficarem dourados e super crocantes por fora, mantendo a cebola macia e saborosa por dentro.",
+          "price": 19.0,
+          "image": "assets/menu/aneis-de-cebola.webp",
+          "groups": []
+        },
+        {
+          "slug": "coxinha-de-frango",
+          "name": "Coxinha de Frango",
+          "description": "4 unidades de coxinhas sem massa, só frango temperado e muito catupiry cremoso. Irresistível!",
+          "price": 28.0,
+          "image": "assets/menu/coxinha-de-frango.webp",
+          "groups": []
+        },
+        {
+          "slug": "coxinha-de-costela",
+          "name": "Coxinha de Costela",
+          "description": "4 unidades de coxinhas sem massa, só Costela temperada e muito catupiry cremoso. Irresistível!",
+          "price": 34.9,
+          "image": "assets/menu/coxinha-de-costela.webp",
+          "groups": []
+        },
+        {
+          "slug": "carne-de-sol-com-fritas",
+          "name": "Carne de Sol com fritas",
+          "description": "500g de Carne de sol na chapa acompanhado de 300g de batata frita.",
+          "price": 95.0,
+          "image": "assets/menu/carne-de-sol-com-fritas.webp",
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "burgers",
+      "name": "Burgers artesanais",
+      "blurb": "Pão brioche, blend da casa e a chapa bem quente.",
+      "products": [
+        {
+          "slug": "magnifico-burger",
+          "name": "Magnífico Burger",
+          "description": "Pão Brioche, Burger 200g, cebola caramelizada, bacon, maionese de bacon e queijo cheddar Fatia.",
+          "price": 38.0,
+          "image": "assets/menu/magnifico-burger.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "honey-burger",
+          "name": "Honey Burger",
+          "description": "Pão brioche, bife 200g, cheddar fatia, queijo coalho grelhado e banhado no mel, cebola caramelizada, bacon fatia, e maionese de alho.",
+          "price": 47.0,
+          "image": "assets/menu/honey-burger.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "tropical-burger",
+          "name": "Tropical Burger",
+          "description": "Pão Brioche, Bife Caseiro 100g, Cheddar fatia, Bacon Crispy, Cream Cheese, Abacaxi com toque de mel e rucula",
+          "price": 35.0,
+          "image": "assets/menu/tropical-burger.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "piscininha-de-cheddar",
+          "name": "Piscininha de cheddar",
+          "description": "Pão brioche, bife de 200g, cheddar fatia e bacon crispy em uma piscina de cheddar cremoso e bacon.",
+          "price": 45.0,
+          "image": "assets/menu/piscininha-de-cheddar.webp",
+          "groups": []
+        },
+        {
+          "slug": "costeludo",
+          "name": "Costeludo",
+          "description": "Pão brioche, burger de 200g, cheddar fatia, disco de costela desfiada, geleia de pimenta e rúcula.",
+          "price": 45.0,
+          "image": "assets/menu/costeludo.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "autentico-burger",
+          "name": "Autêntico Burger",
+          "description": "Pão brioche macio abraça dois hambúrgueres suculentos de 100g, queijo cheddar em dose dupla, cebola grelhada, alface fresca, tomate e molho tasty que realça cada mordida.",
+          "price": 40.0,
+          "image": "assets/menu/autentico-burger.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "double-bacon",
+          "name": "Double Bacon",
+          "description": "Pão brioche, 2 Burger 100g, 2 cheddar, bacon tiras, cebola crocante e maionese de bacon e bbq.",
+          "price": 45.0,
+          "image": "assets/menu/double-bacon.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "costela-bbq",
+          "name": "Costela BBQ",
+          "description": "Pão brioche, burger de 200g, cheddar fatia, costela desfiada, anéis de cebola, bbq",
+          "price": 42.0,
+          "image": "assets/menu/costela-bbq.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "costela-prime",
+          "name": "Costela Prime",
+          "description": "Pão brioche, burger de 100g, cheddar fatia, costela desfiada, banana frita e catupiry.",
+          "price": 40.0,
+          "image": "assets/menu/costela-prime.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "extraordinario-burger",
+          "name": "Extraordinário Burger",
+          "description": "Pão brioche, 2 burgers de 100g, Dobro de cheddar, Dobro de Bacon Crocante, Maionese de Bacon, Alface, Tomate, Cebola Roxa, Picles.",
+          "price": 45.0,
+          "image": "assets/menu/extraordinario-burger.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "nordeste",
+          "name": "Nordeste",
+          "description": "Pão brioche, burger de 200g, Carne seca desfiada, Banana da terra, Cream Cheese.",
+          "price": 40.0,
+          "image": "assets/menu/nordeste.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "ditos-file",
+          "name": "Ditos Filé",
+          "description": "Pão Brioche, filé mignon grelhado, cebola grelhada e queijo cheddar, bacon, alface e tomate.",
+          "price": 45.0,
+          "image": "assets/menu/ditos-file.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "autentico-crispy",
+          "name": "Autêntico Crispy",
+          "description": "Pão brioche, Carne caseira 200g, Cheddar fatia, Muçarela empanada, Maionese Bacon, cebola roxa, alface e tomate.",
+          "price": 45.0,
+          "image": "assets/menu/autentico-crispy.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "provomel",
+          "name": "Provomel",
+          "description": "Pão brioche, burger de 200g, queijo provolone chapeado com toque de mel, bacon tiras, alface, tomate e maionese de bacon.",
+          "price": 39.0,
+          "image": "assets/menu/provomel.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "arretado-burger",
+          "name": "Arretado Burger",
+          "description": "Pão Brioche, Burger 100g, queijo cheddar, bacon, ovo, cebola grelhada, banana frita, e maionese de bacon.",
+          "price": 39.0,
+          "image": "assets/menu/arretado-burger.webp",
+          "groups": [
+            "adicionais"
+          ]
+        },
+        {
+          "slug": "classico",
+          "name": "Clássico",
+          "description": "Pão brioche, bife de 100g, cheddar fatia, bacon, cebola roxa, maionese de bacon, alface e tomate.",
+          "price": 35.0,
+          "image": "assets/menu/classico.webp",
+          "groups": [
+            "adicionais"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "classicos",
+      "name": "Clássicos Ditos",
+      "blurb": "Os de sempre, do jeito que São Mateus conhece.",
+      "products": [
+        {
+          "slug": "ditos-tasty",
+          "name": "Ditos Tasty",
+          "description": "Pão brioche, bife caseiro 100g, cheddar fatia, picles, e molho Tasty.",
+          "price": 25.0,
+          "image": "assets/menu/ditos-tasty.webp",
+          "groups": []
+        },
+        {
+          "slug": "ditos-salad",
+          "name": "Ditos Salad",
+          "description": "Pão brioche, bife caseiro 100g, cheddar fatia, cebola branca crua, molho Tasty, alface e tomate.",
+          "price": 27.0,
+          "image": "assets/menu/ditos-salad.webp",
+          "groups": []
+        },
+        {
+          "slug": "ditos-cheese",
+          "name": "Ditos Cheese",
+          "description": "Pão brioche, bife caseiro 100g, cheddar fatia, picles, e bbq.",
+          "price": 26.0,
+          "image": "assets/menu/ditos-cheese.webp",
+          "groups": []
+        },
+        {
+          "slug": "fininho-bacon",
+          "name": "Fininho Bacon",
+          "description": "Pão Brioche, Carne Caseira 100g, Cheddar Fatia e Bacon em Tiras.",
+          "price": 25.0,
+          "image": "assets/menu/fininho-bacon.webp",
+          "groups": []
+        },
+        {
+          "slug": "ditos-onions",
+          "name": "Ditos Onions",
+          "description": "Pão brioche, bife caseiro 100g, cheddar fatia, anel de cebola e barbecue.",
+          "price": 26.0,
+          "image": "assets/menu/ditos-onions.webp",
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "frango",
+      "name": "Burgers de frango",
+      "blurb": "",
+      "products": [
+        {
+          "slug": "chicken-burger",
+          "name": "Chicken Burger",
+          "description": "Pão Brioche, Filé de Frango empanado, molho coronel, cebola roxa, alface e tomate.",
+          "price": 32.0,
+          "image": "assets/menu/chicken-burger.webp",
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "vegetariano",
+      "name": "Vegetariano",
+      "blurb": "",
+      "products": [
+        {
+          "slug": "futuro-burger",
+          "name": "Futuro Burger",
+          "description": "Pão Brioche, Bife do Futuro, Muçarela empanada, Cebola Crispy, Cebola roxa, Tomate e Alface.",
+          "price": 40.0,
+          "image": "assets/menu/futuro-burger.webp",
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "fit",
+      "name": "Fit",
+      "blurb": "No pão árabe, mais leve.",
+      "products": [
+        {
+          "slug": "fit-frango",
+          "name": "Fit Frango",
+          "description": "Pão árabe, filé de frango ou frango desfiado, cream cheese, cebola roxa, picles, alface e tomate.",
+          "price": 30.0,
+          "image": "assets/menu/fit-frango.webp",
+          "groups": []
+        },
+        {
+          "slug": "fit-mignon",
+          "name": "Fit Mignon",
+          "description": "Pão árabe, filé mignon, queijo muçarela, cebola grelhada, alface e tomate.",
+          "price": 40.0,
+          "image": "assets/menu/fit-mignon.webp",
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "infantil",
+      "name": "Infantil",
+      "blurb": "",
+      "products": [
+        {
+          "slug": "combo-ditos-junior",
+          "name": "Combo Ditos Junior",
+          "description": "Burger: Pão brioche, Bife industrial, queijo muçarela, alface e tomate. + Fritas + Refrigerante 350 ml",
+          "price": 31.0,
+          "image": "assets/menu/combo-ditos-junior.webp",
+          "groups": [
+            "escolha-sua-bebida"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "churros",
+      "name": "Churros",
+      "blurb": "Pra fechar com doce.",
+      "products": [
+        {
+          "slug": "churros-espanhol",
+          "name": "Churros Espanhol",
+          "description": "10 un de churros espanhol fininho, acompanha doce de leite ou brigadeiro.",
+          "price": 25.0,
+          "image": "assets/menu/churros-espanhol.webp",
+          "groups": [
+            "escolha-o-sabor"
+          ]
+        },
+        {
+          "slug": "copo-de-mini-churros",
+          "name": "Copo de Mini churros",
+          "description": "10 unidades de mini churros recheado de doce de leite.",
+          "price": 15.0,
+          "image": "assets/menu/copo-de-mini-churros.webp",
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "molhos",
+      "name": "Molhos da casa",
+      "blurb": "Bisnaga pra levar o molho pra casa.",
+      "products": [
+        {
+          "slug": "bisnaga-maionese-verde",
+          "name": "Bisnaga maionese verde",
+          "description": "",
+          "price": 15.0,
+          "image": "assets/menu/bisnaga-maionese-verde.webp",
+          "groups": []
+        },
+        {
+          "slug": "bisnaga-maionese-de-bacon",
+          "name": "Bisnaga Maionese de Bacon",
+          "description": "",
+          "price": 15.0,
+          "image": "assets/menu/bisnaga-maionese-de-bacon.webp",
+          "groups": []
+        },
+        {
+          "slug": "bisnaga-maionese-tasty",
+          "name": "Bisnaga Maionese Tasty",
+          "description": "",
+          "price": 15.0,
+          "image": "assets/menu/bisnaga-maionese-tasty.webp",
+          "groups": []
+        },
+        {
+          "slug": "bisnaga-ketchup-goiabada",
+          "name": "Bisnaga Ketchup Goiabada",
+          "description": "",
+          "price": 15.0,
+          "image": "assets/menu/bisnaga-ketchup-goiabada.webp",
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "bebidas",
+      "name": "Bebidas",
+      "blurb": "Sempre gelada.",
+      "products": [
+        {
+          "slug": "sucos-500ml",
+          "name": "Sucos 500ml",
+          "description": "",
+          "price": 17.0,
+          "image": "assets/menu/sucos-500ml.webp",
+          "groups": [
+            "escolha-o-sabor-2"
+          ]
+        },
+        {
+          "slug": "refrigerante-350ml",
+          "name": "Refrigerante 350ml",
+          "description": "",
+          "price": 8.0,
+          "image": "assets/menu/refrigerante-350ml.webp",
+          "groups": [
+            "escolha-sua-bebida-2"
+          ]
+        },
+        {
+          "slug": "refrigerante-600ml",
+          "name": "Refrigerante 600ml",
+          "description": "",
+          "price": 12.0,
+          "image": "assets/menu/refrigerante-600ml.webp",
+          "groups": [
+            "escolha-o-sabor-3"
+          ]
+        },
+        {
+          "slug": "refrigerante-1-5l",
+          "name": "Refrigerante 1,5L",
+          "description": "",
+          "price": 17.0,
+          "image": "assets/menu/refrigerante-1-5l.webp",
+          "groups": [
+            "escolha-o-sabor-4"
+          ]
+        },
+        {
+          "slug": "agua-com-gas-500ml",
+          "name": "Água Com Gas 500ml",
+          "description": "",
+          "price": 6.0,
+          "image": "assets/menu/agua-com-gas-500ml.webp",
+          "groups": []
+        },
+        {
+          "slug": "agua-sem-gas-500ml",
+          "name": "Água Sem Gas 500ml",
+          "description": "",
+          "price": 5.0,
+          "image": "assets/menu/agua-sem-gas-500ml.webp",
+          "groups": []
+        }
+      ]
+    }
+  ],
+  "neighborhoods": [
+    {
+      "name": "Alvorada",
+      "fee": 9.0,
+      "eta": "40 a 50 min"
+    },
+    {
+      "name": "Arnaldo Bastos",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Aroeira",
+      "fee": 15.0,
+      "eta": "50 a 60 min"
+    },
+    {
+      "name": "Aviação",
+      "fee": 10.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Ayrton Senna",
+      "fee": 13.0,
+      "eta": "40 a 50 min"
+    },
+    {
+      "name": "Bairro Ideal",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Bairro Vitória",
+      "fee": 10.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Bela Vista",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Blocos",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Boa Vista",
+      "fee": 7.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Bom Sucesso I",
+      "fee": 12.0,
+      "eta": "40 a 50 min"
+    },
+    {
+      "name": "Bom Sucesso II",
+      "fee": 12.0,
+      "eta": "50 a 60 min"
+    },
+    {
+      "name": "Bom Sucesso III",
+      "fee": 12.0,
+      "eta": "40 a 50 min"
+    },
+    {
+      "name": "Buritis I",
+      "fee": 11.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Buritis II",
+      "fee": 11.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Buritis III",
+      "fee": 12.0,
+      "eta": "40 a 50 min"
+    },
+    {
+      "name": "Cacique",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Caiçaras",
+      "fee": 9.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Carapina",
+      "fee": 7.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Centro",
+      "fee": 7.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Cohab",
+      "fee": 12.0,
+      "eta": "40 a 50 min"
+    },
+    {
+      "name": "Colina",
+      "fee": 13.0,
+      "eta": "50 a 60 min"
+    },
+    {
+      "name": "Cricaré",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Dom José Dalvit",
+      "fee": 7.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Fátima",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Forno Velho",
+      "fee": 10.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Golden Garden",
+      "fee": 11.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Inocoop",
+      "fee": 9.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Jacui",
+      "fee": 10.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Jacui II",
+      "fee": 10.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Jacui III",
+      "fee": 13.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Jaqueline",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Jardim Floresta",
+      "fee": 10.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Lago dos Cisnes",
+      "fee": 9.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Morada do Lago",
+      "fee": 12.0,
+      "eta": "40 a 50 min"
+    },
+    {
+      "name": "Morada do Ribeirão",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Nova Conquista",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Nova São Mateus",
+      "fee": 9.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Novo Horizonte",
+      "fee": 9.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Parque das Brisas",
+      "fee": 14.0,
+      "eta": "50 a 60 min"
+    },
+    {
+      "name": "Parque Washington",
+      "fee": 11.0,
+      "eta": "40 a 50 min"
+    },
+    {
+      "name": "Pedra D'Água",
+      "fee": 14.0,
+      "eta": "40 a 50 min"
+    },
+    {
+      "name": "Ponte",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Porto",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Ribeirão",
+      "fee": 7.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Rodocon",
+      "fee": 12.0,
+      "eta": "50 a 60 min"
+    },
+    {
+      "name": "San Remo",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Santa Tereza",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Santo Antônio",
+      "fee": 9.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "São Benedito",
+      "fee": 12.0,
+      "eta": "50 a 60 min"
+    },
+    {
+      "name": "São Pedro",
+      "fee": 10.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Seac",
+      "fee": 12.0,
+      "eta": "40 a 50 min"
+    },
+    {
+      "name": "Sernamby",
+      "fee": 7.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Universitário",
+      "fee": 9.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Vila Nova",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    },
+    {
+      "name": "Vila Verde",
+      "fee": 8.0,
+      "eta": "30 a 40 min"
+    }
+  ]
+}

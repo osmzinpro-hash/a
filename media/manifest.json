@@ -3,6 +3,238 @@
     {
       "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260925_001746_923ee5f7-8ec3-46c2-aeb3-e27649737873.png",
       "path": "media/raw/hero-start-frame.png"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2F2udfPWl6gHy3lFkg4DfK-1790281137141.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/combo-casal-classico.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FzWwvPtDVoxoEC4B06sLv-1790287690602.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/combo-mini-especial.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FMwZOmAs4VaBLqn9nKSk8-1787152911241.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/combo-triplo.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FTeuFwJMAhn7Ci7AS8v5d-1785877444869.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/xis-salada.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FaE0PV7oQIQGdntrvL01T-1785876208004.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/xis-bacon.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2F744aFVKh10OmuxFEXnZ6-1785877463522.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/xis-costela.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2Fphl5xW6YODJqCVYjueWF-1785876969516.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/xis-duplo.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FIgOwTSshm8nKGqnALjDj-1787436347012.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/xis-file-de-frango.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FadwJuF7GJTNDWEWqltkn-1787436361909.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/xis-file-mignon.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FKEKOIbeBry1bayOlXCYH-1784078501867.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/batata-frita.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FMFkx2awqdZ6eaCDbI5Yv-1784066353822.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/batata-turbinada.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FQtnzjRVvsUoWhqLG2XSs-1784078619707.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/frango-crocante-com-fritas.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FQkkORQ0RZZeMqxrnbDfT-1784078662330.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/combo-de-mini-salgadinhos.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FGHpecBxg3UcajbsayaQK-1784078751215.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/copo-de-10-mini-coxinha-de-frango.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2Fb1ioS3WgGubayDYSqRsC-1784067949932.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/aneis-de-cebola.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2F0xr7BR3qAH3CDK0tlmoF-1784068036070.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/coxinha-de-frango.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2Fr9JdbKdY7wPVag4Sw67F-1784068071064.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/coxinha-de-costela.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FDSTNzfRw8LGgqRrQ2yUQ-1784068103835.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/carne-de-sol-com-fritas.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FJ2i0ZZh4kfpn4qDMEotX-1784070725401.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/magnifico-burger.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FrKEUuBaKIB3vU4IjkUFe-1784069742706.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/honey-burger.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FCyK8tpAOB9rcxF3QyE2v-1784069994906.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/tropical-burger.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FdJjzpsGmjnwREHiAqnc0-1784070304380.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/piscininha-de-cheddar.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2Fp3O9UoYNUC843RMsbdI7-1784070355054.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/costeludo.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FjO2XaD1UHkIgYY1q8hb2-1784070678432.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/autentico-burger.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2F1Tzf7QeSlEoFmYdJeHCN-1784070820476.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/double-bacon.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FBCMKHI6LXCNjr5bqK9qr-1784070907743.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/costela-bbq.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FWbnA7ASKbCPlKwdxp7zb-1784070955895.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/costela-prime.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FqM7fg8dDgo4wg55q1gAg-1784071002800.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/extraordinario-burger.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FaCMGbGVXm2lZ0AcPPtsF-1784071026667.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/nordeste.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2F9gZasK4jgkuZPVx91R9Q-1784070863859.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/ditos-file.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FB72fXjNL1fMaZCy6yhje-1788559174287.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/autentico-crispy.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FS1g820raeil1qle5TUvV-1784269288894.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/provomel.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2F5AlpTbMdYauY4wru0BmE-1784070775362.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/arretado-burger.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FHmYiaBScm4ksYvfeON4W-1784070178130.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/classico.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2Fetef58moe6vfY6gegLQ0-1784071434289.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/ditos-tasty.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FVFG3wHwZZDee69mbH2v8-1784071467217.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/ditos-salad.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FJnmzwD3iXcXZBg6epIdf-1784071576658.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/ditos-cheese.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FfzMfYkHqekW6nnSkPGlP-1784071611353.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/fininho-bacon.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FDB6YsDnqSr3qdtqAIBEb-1784071537619.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/ditos-onions.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FRKIy7UYgIpvVqWTqKoPf-1784071882697.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/chicken-burger.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2Fv8KhcuZ2Smw1U5tZ627E-1786048122004.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/futuro-burger.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FSFeoFsLhWutg6p4f5qwE-1784073441689.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/fit-frango.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FIB9H6AYML78csnkC423K-1784073545618.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/fit-mignon.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FqMUmtuVqdyt0O62aKsu1-1784073673609.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/combo-ditos-junior.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FDv32KHVoXgMI3oRWjvnj-1784073745709.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/churros-espanhol.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2F0VpuJLjQT7bDeItLyWs4-1784073773505.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/copo-de-mini-churros.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FdujI9mDk00Q4McV4KPDA-1784073897019.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/bisnaga-maionese-verde.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FHVh8ZZr4aIhwUzF4jRgX-1784073922486.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/bisnaga-maionese-de-bacon.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FUtVvgT0BzAdsNRDxNr7D-1784081228160.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/bisnaga-maionese-tasty.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FCtysgYqSWgNIxBQAcKcN-1784073962665.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/bisnaga-ketchup-goiabada.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FCbjkQ8HnGd797IFPa5Nx-1790286912077.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/sucos-500ml.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FXiOqrbTMxsylBRVL2kGh-1790286930537.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/refrigerante-350ml.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FEdSR6axnRPSVgWvss00Q-1790286943114.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/refrigerante-600ml.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FHOygsUjzGh82SpCixOdT-1790286955699.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/refrigerante-1-5l.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FyTyNEgLeTEHj5H8mWfcK-1790286984318.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/agua-com-gas-500ml.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fproducts%2FQBVDbQpmcNwpPGWaYY8N-1790286995867.jpeg?w=720&h=720&q=86&fit=cover&format=webp",
+      "path": "media/raw/menu/agua-sem-gas-500ml.webp"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Flogos%2Fk8QuDuxyV6mOVtLuLapQ-1784074419907.jpeg?w=600&h=600&q=90&fit=contain&format=png",
+      "path": "media/raw/brand/logo-brendi.png"
+    },
+    {
+      "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fbanners%2Fk8QuDuxyV6mOVtLuLapQ-1784074420112.jpeg?w=1600&h=600&q=90&fit=cover&format=webp",
+      "path": "media/raw/brand/banner-brendi.webp"
     }
   ]
 }
