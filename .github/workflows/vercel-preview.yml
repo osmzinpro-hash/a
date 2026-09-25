@@ -1,47 +1,74 @@
-name: Vercel preview
+name: Vercel deploy
 
-# Publica uma prévia temporária na Vercel, sem precisar de conta (vercel deploy --temporary).
-# A prévia usa SQLite na pasta temporária da função: dá para testar pedidos, mas os dados não ficam.
-# O repositório é público, então a senha do painel entra só como SHA-256.
+# Publica o site na conta da Vercel do dono, usando o token salvo no GitHub
+# (Settings → Secrets and variables → Actions → New repository secret → VERCEL_TOKEN).
+# mode=preview: prévia com banco de teste (SQLite temporário, loja sempre aberta, faixa de "prévia").
+# mode=production: site de verdade, usando o Postgres (Neon) ligado ao projeto na Vercel.
+# O repositório é público: a senha do painel da prévia entra só como SHA-256.
 on:
   workflow_dispatch:
     inputs:
-      admin_hash:
-        description: 'SHA-256 da senha do painel da prévia (nunca a senha em si)'
+      mode:
+        description: 'preview ou production'
         required: true
+        default: preview
+      admin_hash:
+        description: 'Só na prévia: SHA-256 da senha do painel (nunca a senha em si)'
+        required: false
 
 permissions:
   contents: read
 
+concurrency:
+  group: vercel-deploy
+  cancel-in-progress: false
+
 jobs:
-  preview:
+  deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_TELEMETRY_DISABLED: '1'
     steps:
+      - name: Check token
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "Falta o segredo VERCEL_TOKEN no repositório (Settings → Secrets and variables → Actions)."
+            exit 1
+          fi
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Deploy temporary preview
-        env:
-          ADMIN_HASH: ${{ inputs.admin_hash }}
-          VERCEL_TELEMETRY_DISABLED: '1'
-        run: |
-          if ! printf '%s' "$ADMIN_HASH" | grep -Eq '^[0-9a-f]{64}$'; then echo "admin_hash precisa ser um SHA-256 (64 caracteres hexadecimais)"; exit 1; fi
-          SECRET=$(openssl rand -hex 32)
-          npx --yes vercel@60 deploy --temporary --yes \
-            -e DITOS_PREVIEW=1 -e ADMIN_PASSWORD_SHA256="$ADMIN_HASH" -e SESSION_SECRET="$SECRET" 2>&1 | tee deploy.log
-          url=$(grep -Eo 'https://[A-Za-z0-9.-]+\.vercel\.app' deploy.log | tail -1)
-          [ -n "$url" ] || { echo "Não encontrei o endereço da prévia no log."; exit 1; }
-          echo "PREVIEW_URL=$url" >> "$GITHUB_ENV"
+      - name: Link project
+        run: npx --yes vercel@60 link --yes --project ditos-lanches --token "$VERCEL_TOKEN"
 
-      - name: Check the preview
+      - name: Deploy
+        env:
+          MODE: ${{ inputs.mode }}
+          ADMIN_HASH: ${{ inputs.admin_hash }}
         run: |
-          echo "PREVIEW: $PREVIEW_URL"
+          if [ "$MODE" = "production" ]; then
+            npx --yes vercel@60 deploy --prod --yes --token "$VERCEL_TOKEN" 2>&1 | tee deploy.log
+          else
+            if ! printf '%s' "$ADMIN_HASH" | grep -Eq '^[0-9a-f]{64}$'; then echo "admin_hash precisa ser um SHA-256 (64 caracteres hexadecimais)"; exit 1; fi
+            SECRET=$(openssl rand -hex 32)
+            npx --yes vercel@60 deploy --yes --token "$VERCEL_TOKEN" \
+              -e DITOS_PREVIEW=1 -e ADMIN_PASSWORD_SHA256="$ADMIN_HASH" -e SESSION_SECRET="$SECRET" 2>&1 | tee deploy.log
+          fi
+          url=$(grep -Eo 'https://[A-Za-z0-9.-]+\.vercel\.app' deploy.log | tail -1)
+          [ -n "$url" ] || { echo "Não encontrei o endereço no log."; exit 1; }
+          echo "DEPLOY_URL=$url" >> "$GITHUB_ENV"
+
+      - name: Check the deployment
+        run: |
+          echo "URL: $DEPLOY_URL"
           sleep 5
           for p in / /admin /pedido/TESTE123 /api/health /api/menu /assets/video/hero-scrub.webm /assets/banners/combo.mp4; do
-            printf '%-32s %s\n' "$p" "$(curl -s -o /dev/null -w '%{http_code} · %{time_total}s' "$PREVIEW_URL$p")"
+            printf '%-32s %s\n' "$p" "$(curl -s -o /dev/null -w '%{http_code} · %{time_total}s' "$DEPLOY_URL$p")"
           done
-          echo "health: $(curl -s "$PREVIEW_URL/api/health")"
+          echo "health: $(curl -s "$DEPLOY_URL/api/health")"
