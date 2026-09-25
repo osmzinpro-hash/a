@@ -1,0 +1,32 @@
+name: Vercel domain
+
+# Liga um endereço .vercel.app (ou domínio próprio) ao projeto, usando o VERCEL_TOKEN.
+on:
+  workflow_dispatch:
+    inputs:
+      domains:
+        description: 'Endereços a tentar, em ordem, separados por espaço'
+        required: true
+
+jobs:
+  domain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_TELEMETRY_DISABLED: '1'
+      DOMAINS: ${{ inputs.domains }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: npx --yes vercel@60 link --yes --project a --token "$VERCEL_TOKEN" >/dev/null
+      - name: Add domain
+        run: |
+          for d in $DOMAINS; do
+            echo "== tentando $d"
+            if npx --yes vercel@60 domains add "$d" a --token "$VERCEL_TOKEN" 2>&1 | tee out.log && ! grep -qi "error" out.log; then
+              sleep 8
+              echo "RESULT $d $(curl -s -o /dev/null -w '%{http_code}' https://$d) health=$(curl -s https://$d/api/health)"
+              exit 0
+            fi
+          done
+          echo "Nenhum endereço disponível."; exit 1
