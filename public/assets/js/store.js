@@ -47,6 +47,9 @@
     store.menu.products.forEach(p => store.byId.set(p.id, p));
     store.menu.groups.forEach(g => store.groups.set(g.id, g));
     document.dispatchEvent(new CustomEvent('ditos:menu', { detail: store.menu }));
+    if (store.menu.store.preview && !document.querySelector('.preview-ribbon')) {
+      document.body.prepend(h('p', { class: 'preview-ribbon', role: 'status' }, 'Prévia do site. Os pedidos feitos aqui são só de teste e não vão para a cozinha.'));
+    }
   }
 
   // Preço de um item com as opções escolhidas.

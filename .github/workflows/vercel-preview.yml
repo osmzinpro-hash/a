@@ -1,0 +1,47 @@
+name: Vercel preview
+
+# Publica uma prévia temporária na Vercel, sem precisar de conta (vercel deploy --temporary).
+# A prévia usa SQLite na pasta temporária da função: dá para testar pedidos, mas os dados não ficam.
+# O repositório é público, então a senha do painel entra só como SHA-256.
+on:
+  workflow_dispatch:
+    inputs:
+      admin_hash:
+        description: 'SHA-256 da senha do painel da prévia (nunca a senha em si)'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Deploy temporary preview
+        env:
+          ADMIN_HASH: ${{ inputs.admin_hash }}
+          VERCEL_TELEMETRY_DISABLED: '1'
+        run: |
+          if ! printf '%s' "$ADMIN_HASH" | grep -Eq '^[0-9a-f]{64}$'; then echo "admin_hash precisa ser um SHA-256 (64 caracteres hexadecimais)"; exit 1; fi
+          SECRET=$(openssl rand -hex 32)
+          npx --yes vercel@60 deploy --temporary --yes \
+            -e DITOS_PREVIEW=1 -e ADMIN_PASSWORD_SHA256="$ADMIN_HASH" -e SESSION_SECRET="$SECRET" 2>&1 | tee deploy.log
+          url=$(grep -Eo 'https://[A-Za-z0-9.-]+\.vercel\.app' deploy.log | tail -1)
+          [ -n "$url" ] || { echo "Não encontrei o endereço da prévia no log."; exit 1; }
+          echo "PREVIEW_URL=$url" >> "$GITHUB_ENV"
+
+      - name: Check the preview
+        run: |
+          echo "PREVIEW: $PREVIEW_URL"
+          sleep 5
+          for p in / /admin /pedido/TESTE123 /api/health /api/menu /assets/video/hero-scrub.webm /assets/banners/combo.mp4; do
+            printf '%-32s %s\n' "$p" "$(curl -s -o /dev/null -w '%{http_code} · %{time_total}s' "$PREVIEW_URL$p")"
+          done
+          echo "health: $(curl -s "$PREVIEW_URL/api/health")"

@@ -452,6 +452,11 @@ main:focus{outline:none}
 .fine{margin-top:10px;font-size:.85rem;color:var(--ink-2);text-align:center}
 .btn.is-busy{opacity:.8;cursor:progress}
 
+/* faixa que só aparece em prévias (DITOS_PREVIEW=1) */
+.preview-ribbon{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom));z-index:44;transform:translateX(-50%);width:max-content;max-width:calc(100% - 32px);padding:10px 16px;border-radius:12px;background:var(--cheddar);color:var(--ink);font:600 .86rem/1.35 var(--body);text-align:center;box-shadow:0 12px 30px -12px rgba(0,0,0,.8)}
+.has-layer .preview-ribbon{display:none}
+body:has(.fab:not([hidden])) .preview-ribbon{bottom:calc(max(16px,env(safe-area-inset-bottom)) + 72px)}
+
 /* ------------------------------------------------------------ pausa: aba escondida ou fora da tela */
 body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
 
