@@ -6,3 +6,7 @@ data/*.db-*
 node_modules/
 .DS_Store
 *.zip
+
+# Vínculo local com o projeto na Vercel
+.vercel/
+.env*.local
