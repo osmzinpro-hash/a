@@ -33,13 +33,27 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     category_id TEXT NOT NULL REFERENCES categories(id),
-    name TEXT NOT NULL, description TEXT DEFAULT '', price_cents INTEGER NOT NULL,
-    image TEXT DEFAULT '', badge TEXT DEFAULT '', addons INTEGER DEFAULT 1,
+    slug TEXT DEFAULT '',
+    name TEXT NOT NULL, description TEXT DEFAULT '', price_cents INTEGER NOT NULL DEFAULT 0,
+    image TEXT DEFAULT '', badge TEXT DEFAULT '',
     active INTEGER DEFAULT 1, sort INTEGER DEFAULT 0
   );
-  CREATE TABLE IF NOT EXISTS addons (
-    id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, price_cents INTEGER NOT NULL,
+  -- Grupos de opções: 'one' (escolha uma), 'many' (escolha N), 'qty' (adicionais com quantidade)
+  CREATE TABLE IF NOT EXISTS option_groups (
+    id TEXT PRIMARY KEY, title TEXT NOT NULL, type TEXT NOT NULL,
+    min_choices INTEGER DEFAULT 0, max_choices INTEGER DEFAULT 1
+  );
+  CREATE TABLE IF NOT EXISTS options (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id TEXT NOT NULL REFERENCES option_groups(id),
+    title TEXT NOT NULL, price_cents INTEGER NOT NULL DEFAULT 0, max_qty INTEGER DEFAULT 1,
     active INTEGER DEFAULT 1, sort INTEGER DEFAULT 0
+  );
+  CREATE TABLE IF NOT EXISTS product_groups (
+    product_id INTEGER NOT NULL REFERENCES products(id),
+    group_id TEXT NOT NULL REFERENCES option_groups(id),
+    sort INTEGER DEFAULT 0,
+    PRIMARY KEY (product_id, group_id)
   );
   CREATE TABLE IF NOT EXISTS neighborhoods (
     id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE, fee_cents INTEGER NOT NULL,
@@ -76,14 +90,22 @@ function seedIfEmpty() {
   const seed = JSON.parse(readFileSync(join(ROOT, 'data', 'seed.json'), 'utf8'));
   db.exec('BEGIN');
   try {
+    const grp = db.prepare('INSERT OR REPLACE INTO option_groups (id, title, type, min_choices, max_choices) VALUES (?, ?, ?, ?, ?)');
+    const opt = db.prepare('INSERT INTO options (group_id, title, price_cents, max_qty, sort) VALUES (?, ?, ?, ?, ?)');
+    seed.groups.forEach(g => {
+      grp.run(g.id, g.title, g.type, g.min, g.max);
+      g.options.forEach((o, i) => opt.run(g.id, o.title, Math.round(o.price * 100), o.max || 1, i));
+    });
     const cat = db.prepare('INSERT OR REPLACE INTO categories (id, name, blurb, sort) VALUES (?, ?, ?, ?)');
-    const prod = db.prepare('INSERT INTO products (category_id, name, description, price_cents, image, badge, addons, sort) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    const prod = db.prepare('INSERT INTO products (category_id, slug, name, description, price_cents, image, badge, sort) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    const link = db.prepare('INSERT INTO product_groups (product_id, group_id, sort) VALUES (?, ?, ?)');
     seed.categories.forEach((c, i) => {
       cat.run(c.id, c.name, c.blurb || '', i);
-      c.products.forEach((p, j) => prod.run(c.id, p.name, p.description || '', Math.round(p.price * 100), p.image || c.image || '', p.badge || '', c.addons === false ? 0 : 1, j));
+      c.products.forEach((p, j) => {
+        const id = Number(prod.run(c.id, p.slug || '', p.name, p.description || '', Math.round(p.price * 100), p.image || '', p.badge || '', j).lastInsertRowid);
+        (p.groups || []).forEach((g, k) => link.run(id, g, k));
+      });
     });
-    const add = db.prepare('INSERT INTO addons (name, price_cents, sort) VALUES (?, ?, ?)');
-    seed.addons.forEach((a, i) => add.run(a.name, Math.round(a.price * 100), i));
     const nb = db.prepare('INSERT OR IGNORE INTO neighborhoods (name, fee_cents, eta) VALUES (?, ?, ?)');
     seed.neighborhoods.forEach(n => nb.run(n.name, Math.round(n.fee * 100), n.eta || '35 a 50 min'));
     const st = db.prepare('INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)');
@@ -240,15 +262,34 @@ function verifyToken(token) {
 const isAdmin = req => verifyToken((req.headers.authorization || '').replace(/^Bearer\s+/i, ''));
 
 // ---------------------------------------------------------------- loja
-const PUBLIC_SETTINGS = ['store_name', 'whatsapp', 'phone', 'address', 'address_2', 'hours_label', 'instagram', 'min_order', 'pickup_enabled', 'delivery_enabled', 'pix_enabled', 'avg_prep'];
+const PUBLIC_SETTINGS = ['store_name', 'whatsapp', 'phone', 'address', 'address_2', 'hours_label', 'instagram', 'min_order', 'pickup_enabled', 'delivery_enabled', 'avg_prep', 'pickup_eta'];
+const PAYMENTS = {
+  pix: 'Pix pelo site',
+  credito: 'Cartão de crédito na entrega',
+  debito: 'Cartão de débito na entrega',
+  dinheiro: 'Dinheiro',
+  vale: 'Vale-refeição na entrega'
+};
+const pixReady = s => s.pix_enabled !== '0' && !!String(s.pix_key || '').trim();
 
 function menuPayload() {
   const s = getSettings();
+  const links = db.prepare('SELECT product_id, group_id FROM product_groups ORDER BY product_id, sort').all();
+  const groupsOf = {};
+  for (const l of links) (groupsOf[l.product_id] ||= []).push(l.group_id);
+  const options = db.prepare('SELECT id, group_id, title, price_cents, max_qty FROM options WHERE active = 1 ORDER BY group_id, sort, id').all();
+  const groups = db.prepare('SELECT id, title, type, min_choices, max_choices FROM option_groups').all()
+    .map(g => ({ ...g, options: options.filter(o => o.group_id === g.id).map(({ group_id, ...o }) => o) }));
   return {
-    store: { ...Object.fromEntries(PUBLIC_SETTINGS.map(k => [k, s[k] ?? ''])), ...storeStatus(s) },
+    store: {
+      ...Object.fromEntries(PUBLIC_SETTINGS.map(k => [k, s[k] ?? ''])),
+      ...storeStatus(s),
+      payments: Object.entries(PAYMENTS).filter(([k]) => k !== 'pix' || pixReady(s)).map(([id, label]) => ({ id, label }))
+    },
     categories: db.prepare('SELECT id, name, blurb FROM categories WHERE active = 1 ORDER BY sort').all(),
-    products: db.prepare('SELECT id, category_id, name, description, price_cents, image, badge, addons FROM products WHERE active = 1 ORDER BY sort, id').all(),
-    addons: db.prepare('SELECT id, name, price_cents FROM addons WHERE active = 1 ORDER BY sort, id').all(),
+    products: db.prepare('SELECT id, category_id, slug, name, description, price_cents, image, badge FROM products WHERE active = 1 ORDER BY sort, id').all()
+      .map(p => ({ ...p, groups: groupsOf[p.id] || [] })),
+    groups,
     neighborhoods: db.prepare('SELECT id, name, fee_cents, eta FROM neighborhoods WHERE active = 1 ORDER BY name').all()
   };
 }
@@ -287,22 +328,39 @@ function createOrder(input) {
   if (fulfillment === 'delivery' && s.delivery_enabled === '0') throw Object.assign(new Error('Entrega indisponível no momento.'), { status: 400 });
 
   // Preços sempre recalculados pelo servidor, nunca aceitos do navegador.
-  const productStmt = db.prepare('SELECT id, name, price_cents, addons FROM products WHERE id = ? AND active = 1');
-  const addonStmt = db.prepare('SELECT id, name, price_cents FROM addons WHERE id = ? AND active = 1');
+  const productStmt = db.prepare('SELECT id, name, price_cents FROM products WHERE id = ? AND active = 1');
+  const groupsStmt = db.prepare('SELECT g.id, g.title, g.type, g.min_choices, g.max_choices FROM product_groups pg JOIN option_groups g ON g.id = pg.group_id WHERE pg.product_id = ? ORDER BY pg.sort');
+  const optionStmt = db.prepare('SELECT id, group_id, title, price_cents, max_qty FROM options WHERE id = ? AND active = 1');
+  const bad = message => Object.assign(new Error(message), { status: 400 });
   const lines = Array.isArray(input.items) ? input.items.slice(0, 60) : [];
-  if (!lines.length) throw Object.assign(new Error('Seu pedido está vazio.'), { status: 400 });
+  if (!lines.length) throw bad('Seu pedido está vazio.');
   const items = [];
   let subtotal = 0;
   for (const line of lines) {
     const product = productStmt.get(Number(line.id));
     if (!product) throw Object.assign(new Error('Um item do seu pedido saiu do cardápio. Atualize a página.'), { status: 409 });
     const qty = Math.max(1, Math.min(30, Math.floor(Number(line.qty) || 1)));
-    const addons = product.addons && Array.isArray(line.addons)
-      ? [...new Set(line.addons.map(Number))].slice(0, 12).map(id => addonStmt.get(id)).filter(Boolean)
-      : [];
-    const unit = product.price_cents + addons.reduce((sum, a) => sum + a.price_cents, 0);
+    const picked = new Map();
+    for (const o of Array.isArray(line.options) ? line.options.slice(0, 40) : []) {
+      const id = Number(o.id);
+      picked.set(id, (picked.get(id) || 0) + Math.max(1, Math.floor(Number(o.qty) || 1)));
+    }
+    const groups = groupsStmt.all(product.id);
+    const chosen = [];
+    for (const g of groups) {
+      const inGroup = [...picked].map(([id, n]) => ({ o: optionStmt.get(id), n })).filter(x => x.o && x.o.group_id === g.id);
+      const count = inGroup.reduce((sum, x) => sum + (g.type === 'qty' ? x.n : 1), 0);
+      if (count < g.min_choices) throw bad(`${product.name}: escolha ${g.title.toLowerCase()}.`);
+      if (count > g.max_choices) throw bad(`${product.name}: no máximo ${g.max_choices} em ${g.title.toLowerCase()}.`);
+      for (const { o, n } of inGroup) {
+        const q = g.type === 'qty' ? Math.min(n, o.max_qty || g.max_choices) : 1;
+        chosen.push({ id: o.id, group: g.title, name: o.title, qty: q, price_cents: o.price_cents });
+      }
+    }
+    const unit = product.price_cents + chosen.reduce((sum, o) => sum + o.price_cents * o.qty, 0);
+    if (unit <= 0) throw bad(`${product.name}: escolha uma opção.`);
     subtotal += unit * qty;
-    items.push({ id: product.id, name: product.name, qty, unit_cents: unit, addons: addons.map(a => ({ id: a.id, name: a.name, price_cents: a.price_cents })), note: clean(line.note, 140) });
+    items.push({ id: product.id, name: product.name, qty, unit_cents: unit, options: chosen, note: clean(line.note, 140) });
   }
 
   const minOrder = Math.round(Number(s.min_order || 0) * 100);
@@ -321,11 +379,11 @@ function createOrder(input) {
     fee = nb.fee_cents;
   }
 
-  const payment = ['pix', 'card', 'cash'].includes(input.payment) ? input.payment : null;
-  if (!payment) throw Object.assign(new Error('Escolha a forma de pagamento.'), { status: 400 });
-  if (payment === 'pix' && (!s.pix_key || s.pix_enabled === '0')) throw Object.assign(new Error('Pix indisponível agora. Escolha outra forma.'), { status: 400 });
+  const payment = PAYMENTS[input.payment] ? input.payment : null;
+  if (!payment) throw bad('Escolha a forma de pagamento.');
+  if (payment === 'pix' && !pixReady(s)) throw bad('Pix indisponível agora. Escolha outra forma.');
   const total = subtotal + fee;
-  const changeFor = payment === 'cash' ? Math.round(Number(input.change_for || 0) * 100) : 0;
+  const changeFor = payment === 'dinheiro' ? Math.round(Number(input.change_for || 0) * 100) : 0;
   if (changeFor && changeFor < total) throw Object.assign(new Error('O troco precisa ser para um valor maior que o total.'), { status: 400 });
 
   const code = newCode();
@@ -353,11 +411,12 @@ function publicOrder(row, s = getSettings()) {
     delivery_fee_cents: row.delivery_fee_cents,
     total_cents: row.total_cents,
     payment_method: row.payment_method,
+    payment_label: PAYMENTS[row.payment_method] || row.payment_method,
     paid: !!row.paid,
     customer_first_name: row.customer_name.split(' ')[0],
     whatsapp: s.whatsapp || ''
   };
-  if (row.payment_method === 'pix' && !row.paid && row.status !== 'cancelado') {
+  if (row.payment_method === 'pix' && !row.paid && row.status !== 'cancelado' && pixReady(s)) {
     order.pix = pixPayload({ key: s.pix_key, name: s.pix_name || s.store_name, city: s.pix_city, amountCents: row.total_cents, txid: 'DITOS' + row.code });
   }
   return order;
@@ -366,7 +425,7 @@ function publicOrder(row, s = getSettings()) {
 // ---------------------------------------------------------------- painel (admin)
 const adminOrder = row => ({ ...publicOrder(row), customer_name: row.customer_name, customer_phone: row.customer_phone, address: JSON.parse(row.address || '{}'), notes: row.notes, change_for_cents: row.change_for_cents, updated_at: row.updated_at });
 
-const EDITABLE_SETTINGS = ['store_name', 'whatsapp', 'phone', 'address', 'address_2', 'hours_label', 'instagram', 'min_order', 'pickup_enabled', 'delivery_enabled', 'pix_enabled', 'pix_key', 'pix_name', 'pix_city', 'store_mode', 'open_time', 'close_time', 'open_days', 'closed_message', 'avg_prep'];
+const EDITABLE_SETTINGS = ['store_name', 'whatsapp', 'phone', 'address', 'address_2', 'hours_label', 'instagram', 'min_order', 'pickup_enabled', 'delivery_enabled', 'pix_enabled', 'pix_key', 'pix_name', 'pix_city', 'store_mode', 'open_time', 'close_time', 'open_days', 'closed_message', 'avg_prep', 'pickup_eta'];
 
 function dayStartIso(offsetDays = 0) {
   // Início do dia em São Mateus (UTC-3) convertido para ISO.
@@ -416,7 +475,8 @@ async function handleAdmin(req, res, path, url) {
     return send(res, 200, {
       categories: db.prepare('SELECT * FROM categories ORDER BY sort').all(),
       products: db.prepare('SELECT * FROM products ORDER BY category_id, sort, id').all(),
-      addons: db.prepare('SELECT * FROM addons ORDER BY sort, id').all(),
+      groups: db.prepare('SELECT * FROM option_groups ORDER BY title').all(),
+      options: db.prepare('SELECT * FROM options ORDER BY group_id, sort, id').all(),
       neighborhoods: db.prepare('SELECT * FROM neighborhoods ORDER BY name').all(),
       settings: Object.fromEntries(Object.entries(getSettings()).filter(([k]) => EDITABLE_SETTINGS.includes(k)))
     });
@@ -424,14 +484,14 @@ async function handleAdmin(req, res, path, url) {
   const productMatch = path.match(/^\/api\/admin\/products(?:\/(\d+))?$/);
   if (productMatch && (req.method === 'POST' || req.method === 'PUT')) {
     const b = await readJson(req);
-    const fields = [clean(b.category_id, 40), clean(b.name, 80), clean(b.description, 300), Math.round(Number(b.price_cents) || 0), clean(b.image, 200), clean(b.badge, 30), b.addons ? 1 : 0, b.active === false || b.active === 0 ? 0 : 1];
-    if (!fields[1] || fields[3] <= 0) return fail(res, 400, 'Nome e preço são obrigatórios.');
+    const fields = [clean(b.category_id, 40), clean(b.name, 80), clean(b.description, 300), Math.max(0, Math.round(Number(b.price_cents) || 0)), clean(b.image, 200), clean(b.badge, 30), b.active === false || b.active === 0 ? 0 : 1];
+    if (!fields[1]) return fail(res, 400, 'O nome é obrigatório.');
     if (!db.prepare('SELECT 1 FROM categories WHERE id = ?').get(fields[0])) return fail(res, 400, 'Categoria inválida.');
     if (req.method === 'POST') {
-      const info = db.prepare('INSERT INTO products (category_id, name, description, price_cents, image, badge, addons, active, sort) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 999)').run(...fields);
+      const info = db.prepare('INSERT INTO products (category_id, name, description, price_cents, image, badge, active, sort) VALUES (?, ?, ?, ?, ?, ?, ?, 999)').run(...fields);
       return send(res, 201, db.prepare('SELECT * FROM products WHERE id = ?').get(Number(info.lastInsertRowid)));
     }
-    db.prepare('UPDATE products SET category_id = ?, name = ?, description = ?, price_cents = ?, image = ?, badge = ?, addons = ?, active = ? WHERE id = ?').run(...fields, Number(productMatch[1]));
+    db.prepare('UPDATE products SET category_id = ?, name = ?, description = ?, price_cents = ?, image = ?, badge = ?, active = ? WHERE id = ?').run(...fields, Number(productMatch[1]));
     return send(res, 200, db.prepare('SELECT * FROM products WHERE id = ?').get(Number(productMatch[1])));
   }
   const nbMatch = path.match(/^\/api\/admin\/neighborhoods(?:\/(\d+))?$/);
@@ -445,13 +505,12 @@ async function handleAdmin(req, res, path, url) {
     } catch { return fail(res, 409, 'Esse bairro já existe.'); }
     return send(res, 200, { ok: true });
   }
-  const addonMatch = path.match(/^\/api\/admin\/addons(?:\/(\d+))?$/);
-  if (addonMatch && (req.method === 'POST' || req.method === 'PUT')) {
+  const optionMatch = path.match(/^\/api\/admin\/options\/(\d+)$/);
+  if (optionMatch && req.method === 'PUT') {
     const b = await readJson(req);
-    const name = clean(b.name, 60), price = Math.max(0, Math.round(Number(b.price_cents) || 0)), active = b.active === false || b.active === 0 ? 0 : 1;
-    if (!name) return fail(res, 400, 'Informe o nome do adicional.');
-    if (req.method === 'POST') db.prepare('INSERT INTO addons (name, price_cents, active, sort) VALUES (?, ?, ?, 999)').run(name, price, active);
-    else db.prepare('UPDATE addons SET name = ?, price_cents = ?, active = ? WHERE id = ?').run(name, price, active, Number(addonMatch[1]));
+    const title = clean(b.title, 60), price = Math.max(0, Math.round(Number(b.price_cents) || 0)), active = b.active === false || b.active === 0 ? 0 : 1;
+    if (!title) return fail(res, 400, 'Informe o nome da opção.');
+    db.prepare('UPDATE options SET title = ?, price_cents = ?, active = ? WHERE id = ?').run(title, price, active, Number(optionMatch[1]));
     return send(res, 200, { ok: true });
   }
   if (path === '/api/admin/settings' && req.method === 'PUT') {
