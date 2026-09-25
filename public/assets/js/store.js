@@ -356,11 +356,70 @@
   const drawer = () => $('#comanda');
   const form = () => $('#checkout');
 
+  // ------------------------------------------------------------------ frete pelo CEP
+  // O cliente digita o CEP; o servidor devolve o endereço e o frete (pela distância até a loja).
+  const freight = { status: 'idle', key: '', data: null };
+  const cepDigits = v => String(v || '').replace(/\D/g, '').slice(0, 8);
+  const maskCep = input => { const d = cepDigits(input.value); input.value = d.length > 5 ? `${d.slice(0, 5)}-${d.slice(5)}` : d; };
+
+  async function fetchQuote(cep, number = '') {
+    const res = await fetch(`/api/frete?cep=${cep}&numero=${encodeURIComponent(number)}`, { headers: { accept: 'application/json' } });
+    const data = await res.json().catch(() => ({ ok: false, error: 'Não deu para calcular agora. Tente de novo.' }));
+    if (res.status === 404) throw new Error('offline');
+    return data;
+  }
+  const quoteLine = q => {
+    const where = [q.district, `${q.city} - ${q.uf}`].filter(Boolean).join(', ');
+    const dist = q.distance_km != null ? ` (${String(q.distance_km).replace('.', ',')} km da loja)` : '';
+    return `${where}. Frete ${money(q.fee_cents)}, chega em ${q.eta}${dist}.`;
+  };
+
+  let quoteTimer = null, lastAutoStreet = '';
+  function requestQuote(delay = 0) {
+    clearTimeout(quoteTimer);
+    quoteTimer = setTimeout(runQuote, delay);
+  }
+  async function runQuote() {
+    const f = form();
+    const status = $('[data-cep-status]', f);
+    const cep = cepDigits(f.elements.cep.value);
+    const number = f.elements.number.value.trim();
+    if (cep.length !== 8) {
+      Object.assign(freight, { status: 'idle', key: '', data: null });
+      status.className = 'cep-status';
+      status.textContent = '';
+      syncFulfillment();
+      return;
+    }
+    const key = `${cep}|${number.replace(/\D/g, '')}`;
+    if (key === freight.key && freight.status !== 'error') return;
+    Object.assign(freight, { status: 'busy', key });
+    status.className = 'cep-status is-busy';
+    status.textContent = 'Calculando o frete...';
+    updateTotals();
+    try {
+      const q = await fetchQuote(cep, number);
+      if (freight.key !== key) return; // chegou resposta de um CEP antigo
+      freight.data = q;
+      freight.status = q.ok ? 'ok' : 'error';
+      // Preenche a rua sozinho, sem apagar o que o cliente digitou por conta própria.
+      const street = f.elements.street;
+      if (q.street && (!street.value.trim() || street.value === lastAutoStreet)) { street.value = q.street; lastAutoStreet = q.street; }
+      status.className = 'cep-status ' + (q.ok ? 'is-ok' : 'is-error');
+      status.textContent = q.ok ? quoteLine(q) : q.error;
+    } catch {
+      if (freight.key !== key) return;
+      freight.status = store.live ? 'error' : 'offline';
+      status.className = 'cep-status is-error';
+      status.textContent = store.live ? 'Não deu para calcular agora. Confira a internet e tente de novo.' : 'O frete será combinado pelo WhatsApp.';
+    }
+    syncFulfillment();
+  }
+
   function feeCents() {
     const f = form();
     if (!f || f.fulfillment.value !== 'delivery') return 0;
-    const nb = store.menu.neighborhoods.find(n => String(n.id) === f.neighborhood.value);
-    return nb ? nb.fee_cents : 0;
+    return freight.status === 'ok' ? freight.data.fee_cents : 0;
   }
   function updateTotals() {
     const sub = cartSubtotal();
@@ -369,7 +428,8 @@
     const delivery = f && f.fulfillment.value === 'delivery';
     const set = (sel, text) => document.querySelectorAll(sel).forEach(el => { el.textContent = text; });
     set('[data-sub]', money(sub));
-    set('[data-fee]', delivery ? (f.neighborhood.value ? money(fee) : 'escolha o bairro') : 'grátis, retirada');
+    const feeText = freight.status === 'ok' ? money(fee) : freight.status === 'busy' ? 'calculando...' : freight.status === 'offline' ? 'a combinar' : 'digite o CEP';
+    set('[data-fee]', delivery ? feeText : 'grátis, retirada');
     set('[data-total]', money(sub + fee));
     const min = Math.round(Number(store.menu?.store.min_order || 0) * 100);
     const minNote = $('[data-min-note]');
@@ -380,7 +440,11 @@
     const go = $('[data-go-checkout]');
     if (go) go.disabled = !cart.length || sub < min;
     const submit = $('[data-submit]');
-    if (submit) submit.textContent = store.live ? `Mandar pra chapa  ${money(sub + fee)}` : 'Enviar pedido pelo WhatsApp';
+    if (submit && !submit.classList.contains('is-busy')) {
+      submit.textContent = store.live ? `Mandar pra chapa  ${money(sub + fee)}` : 'Enviar pedido pelo WhatsApp';
+      const waitingFreight = store.live && delivery && freight.status !== 'ok';
+      submit.disabled = !store.menu?.store.open || waitingFreight;
+    }
   }
 
   function setStep(step) {
@@ -396,10 +460,7 @@
 
   function fillCheckout() {
     const f = form();
-    const { neighborhoods, store: info } = store.menu;
-    const select = f.neighborhood;
-    select.replaceChildren(h('option', { value: '' }, 'Escolha o bairro'),
-      ...neighborhoods.map(n => h('option', { value: n.id }, `${n.name}  ·  ${money(n.fee_cents)}  ·  ${n.eta}`)));
+    const { store: info } = store.menu;
     const pay = $('[data-payments]', f);
     pay.replaceChildren(...info.payments.map((p, i) =>
       h('label', { class: 'pay' },
@@ -410,18 +471,20 @@
     f.querySelector('[data-delivery]').hidden = info.delivery_enabled === '0';
     if (info.delivery_enabled === '0') f.fulfillment.value = 'pickup';
     const saved = read(CUSTOMER_KEY, {});
-    for (const k of ['name', 'phone', 'street', 'number', 'complement', 'reference']) if (saved[k] && !f.elements[k].value) f.elements[k].value = saved[k];
-    if (saved.neighborhood && neighborhoods.some(n => String(n.id) === saved.neighborhood)) select.value = saved.neighborhood;
+    for (const k of ['name', 'phone', 'cep', 'street', 'number', 'complement', 'reference']) if (saved[k] && !f.elements[k].value) f.elements[k].value = saved[k];
     syncFulfillment();
+    if (cepDigits(f.elements.cep.value).length === 8) requestQuote();
   }
 
   function syncFulfillment() {
     const f = form();
     const delivery = f.fulfillment.value === 'delivery';
     $('[data-address]', f).hidden = !delivery;
-    ['neighborhood', 'street', 'number'].forEach(n => { f.elements[n].required = delivery; });
+    ['cep', 'street', 'number'].forEach(n => { f.elements[n].required = delivery; });
     const info = store.menu.store;
-    $('[data-eta]', f).textContent = delivery ? `Entrega em ${f.neighborhood.value ? store.menu.neighborhoods.find(n => String(n.id) === f.neighborhood.value)?.eta : info.avg_prep}.` : `Retirada no balcão em ${info.pickup_eta || '15 a 25 min'}. ${info.address}.`;
+    $('[data-eta]', f).textContent = delivery
+      ? (freight.status === 'ok' ? `Entrega em ${freight.data.eta}.` : `Entregamos em São Mateus até ${String(info.delivery_max_km || 6).replace('.', ',')} km da loja.`)
+      : `Retirada no balcão em ${info.pickup_eta || '15 a 25 min'}. ${info.address}.`;
     const cash = f.payment?.value === 'dinheiro';
     $('[data-change]', f).hidden = !cash;
     updateTotals();
@@ -441,7 +504,7 @@
       phone: f.elements.phone.value.trim(),
       fulfillment: f.fulfillment.value,
       address: {
-        neighborhood_id: Number(f.neighborhood.value) || null,
+        cep: cepDigits(f.elements.cep.value),
         street: f.elements.street.value.trim(),
         number: f.elements.number.value.trim(),
         complement: f.elements.complement.value.trim(),
@@ -461,11 +524,11 @@
       const opts = l.options.map(o => { const t = findOption(p, o.id)?.title; return t ? `${t}${o.qty > 1 ? ' ×' + o.qty : ''}` : ''; }).filter(Boolean);
       lines.push(`${l.qty}x ${p.name}${opts.length ? ` (${opts.join(', ')})` : ''}${l.note ? ` Obs.: ${l.note}` : ''}  ${money(unitPrice(p, l.options) * l.qty)}`);
     });
-    const nb = store.menu.neighborhoods.find(n => n.id === order.address.neighborhood_id);
+    const q = freight.status === 'ok' ? freight.data : null;
     lines.push('', `Subtotal: ${money(cartSubtotal())}`);
     if (order.fulfillment === 'delivery') {
-      lines.push(`Entrega (${nb?.name || ''}): ${money(nb?.fee_cents || 0)}`, `Total: ${money(cartSubtotal() + (nb?.fee_cents || 0))}`, '',
-        `Endereço: ${order.address.street}, ${order.address.number}${order.address.complement ? ', ' + order.address.complement : ''}, ${nb?.name || ''}`,
+      lines.push(q ? `Entrega: ${money(q.fee_cents)}` : 'Entrega: a combinar', `Total: ${money(cartSubtotal() + (q?.fee_cents || 0))}`, '',
+        `Endereço: ${order.address.street}, ${order.address.number}${order.address.complement ? ', ' + order.address.complement : ''}${q?.district ? ', ' + q.district : ''}, CEP ${order.address.cep}`,
         order.address.reference ? `Referência: ${order.address.reference}` : '');
     } else lines.push(`Total: ${money(cartSubtotal())}`, '', 'Vou retirar no balcão.');
     lines.push(`Pagamento: ${store.menu.store.payments.find(p => p.id === order.payment)?.label || order.payment}`, `Nome: ${order.name}`, `Telefone: ${order.phone}`);
@@ -479,7 +542,7 @@
     showError('');
     if (!f.reportValidity()) return;
     const order = orderPayload();
-    write(CUSTOMER_KEY, { name: order.name, phone: order.phone, street: order.address.street, number: order.address.number, complement: order.address.complement, reference: order.address.reference, neighborhood: f.neighborhood.value });
+    write(CUSTOMER_KEY, { name: order.name, phone: order.phone, cep: f.elements.cep.value, street: order.address.street, number: order.address.number, complement: order.address.complement, reference: order.address.reference });
 
     if (!store.live) {
       const wa = String(store.menu.store.whatsapp || '').replace(/\D/g, '');
@@ -538,7 +601,32 @@
       });
     });
     const f = form();
-    f.addEventListener('change', e => { if (['fulfillment', 'neighborhood', 'payment'].includes(e.target.name)) syncFulfillment(); });
+    f.addEventListener('change', e => { if (['fulfillment', 'payment'].includes(e.target.name)) syncFulfillment(); });
+    f.elements.cep.addEventListener('input', e => { maskCep(e.target); requestQuote(cepDigits(e.target.value).length === 8 ? 0 : 300); });
+    f.elements.number.addEventListener('input', () => { if (cepDigits(f.elements.cep.value).length === 8) requestQuote(800); });
+
+    // Calculadora de frete na seção de entrega da página
+    const calc = $('[data-freight-calc]');
+    if (calc) {
+      const input = $('input', calc), out = $('[data-calc-status]', calc);
+      input.addEventListener('input', () => maskCep(input));
+      calc.addEventListener('submit', async e => {
+        e.preventDefault();
+        const cep = cepDigits(input.value);
+        if (cep.length !== 8) { out.className = 'cep-status is-error'; out.textContent = 'Digite o CEP completo, com 8 números.'; return; }
+        out.className = 'cep-status is-busy';
+        out.textContent = 'Calculando o frete...';
+        try {
+          const q = await fetchQuote(cep);
+          out.className = 'cep-status ' + (q.ok ? 'is-ok' : 'is-error');
+          out.textContent = q.ok ? `${q.street ? q.street + ', ' : ''}${quoteLine(q)}` : q.error;
+          if (q.ok && !form().elements.cep.value) form().elements.cep.value = input.value;
+        } catch {
+          out.className = 'cep-status is-error';
+          out.textContent = 'Não deu para calcular agora. Tente de novo em instantes.';
+        }
+      });
+    }
     f.addEventListener('submit', submitOrder);
     f.elements.phone.addEventListener('input', e => {
       const d = e.target.value.replace(/\D/g, '').slice(0, 11);

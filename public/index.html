@@ -235,7 +235,7 @@
         <div class="delivery-copy reveal">
           <p class="kicker kicker-dot">Entrega própria</p>
           <h2 id="delivery-t" class="section-title">Quente na porta, sem mistério.</h2>
-          <p class="lede">A taxa do seu bairro aparece antes de você fechar o pedido. Depois, é só acompanhar pela tela.</p>
+          <p class="lede">Digite o CEP e o frete sai na hora, pela distância até a loja. Depois, é só acompanhar o pedido pela tela.</p>
           <ol class="timeline" aria-label="Etapas do pedido">
             <li><span class="tl-dot" aria-hidden="true"></span><b>Recebido</b><span>A cozinha vê seu pedido na hora.</span></li>
             <li><span class="tl-dot" aria-hidden="true"></span><b>Na chapa</b><span>Carne selando, pão tostando.</span></li>
@@ -245,8 +245,16 @@
           <p class="pickup"><b>Prefere buscar?</b> Retire no balcão em 15 a 25 minutos, na <span data-store-address>Av. Dr. Raimundo Guilherme Sobrinho, 469, Centro</span>.</p>
         </div>
         <div class="hoods reveal">
+          <form class="freight-calc" data-freight-calc novalidate>
+            <label for="calc-cep">Calcule o frete pelo CEP</label>
+            <div class="cep-row">
+              <input id="calc-cep" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" maxlength="9">
+              <button class="btn btn-accent btn-sm" type="submit">Calcular</button>
+            </div>
+            <p class="cep-status" data-calc-status aria-live="polite"></p>
+          </form>
           <label class="hoods-search">
-            <span>Procure seu bairro</span>
+            <span>Ou procure seu bairro</span>
             <input type="search" placeholder="Ex.: Centro, Sernamby, Boa Vista" data-hood-search autocomplete="off">
           </label>
           <ul class="hoods-list" data-hoods role="list"></ul>
@@ -280,7 +288,7 @@
         <div class="faq-list">
           <details class="reveal"><summary>Chega quente mesmo?</summary><p>Chega. O lanche só entra na chapa quando o pedido é confirmado e sai embalado fechado direto pro motoboy.</p></details>
           <details class="reveal"><summary>Quanto tempo demora?</summary><p>Na maioria dos bairros, entre 30 e 50 minutos. Na página do pedido você vê cada etapa.</p></details>
-          <details class="reveal"><summary>Quais bairros vocês atendem?</summary><p>Os 56 bairros de São Mateus da lista de entrega. A taxa aparece antes de você fechar o pedido.</p></details>
+          <details class="reveal"><summary>Quais bairros vocês atendem?</summary><p>Entregamos em São Mateus até 6 km da loja. Digite seu CEP no pedido e o frete é calculado na hora, antes de você fechar.</p></details>
           <details class="reveal"><summary>Como eu pago?</summary><p>Pix pelo site, ou cartão, vale-refeição e dinheiro na entrega. Se precisar de troco, é só avisar.</p></details>
           <details class="reveal"><summary>Posso tirar ou trocar ingrediente?</summary><p>Pode. Cada lanche tem adicionais e um campo de observação.</p></details>
           <details class="reveal"><summary>E se vier algo errado?</summary><p>Chama a gente com o número do pedido e a gente resolve na hora.</p></details>
@@ -368,7 +376,14 @@
             </div>
             <p class="eta" data-eta></p>
             <div data-address>
-              <div class="field"><label for="f-hood">Bairro</label><select id="f-hood" name="neighborhood"></select></div>
+              <div class="field cep-field">
+                <label for="f-cep">CEP</label>
+                <div class="cep-row">
+                  <input id="f-cep" name="cep" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" maxlength="9">
+                  <a class="cep-help" href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener">Não sei meu CEP</a>
+                </div>
+                <p class="cep-status" data-cep-status aria-live="polite"></p>
+              </div>
               <div class="field-row">
                 <div class="field grow"><label for="f-street">Rua</label><input id="f-street" name="street" autocomplete="address-line1" maxlength="120"></div>
                 <div class="field small"><label for="f-number">Número</label><input id="f-number" name="number" inputmode="numeric" maxlength="20"></div>

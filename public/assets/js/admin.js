@@ -96,7 +96,7 @@
 
   function orderCard(o, isNew) {
     const addr = o.fulfillment === 'delivery'
-      ? `${o.address.street}, ${o.address.number}${o.address.complement ? ', ' + o.address.complement : ''} · ${o.neighborhood}${o.address.reference ? ' · Ref.: ' + o.address.reference : ''}`
+      ? `${o.address.street}, ${o.address.number}${o.address.complement ? ', ' + o.address.complement : ''} · ${o.neighborhood}${o.address.cep ? ' · CEP ' + o.address.cep : ''}${o.address.distance_km != null ? ` · ${String(o.address.distance_km).replace('.', ',')} km` : ''}${o.address.reference ? ' · Ref.: ' + o.address.reference : ''}`
       : 'Retirada no balcão';
     const phone = o.customer_phone.replace(/\D/g, '');
     const track = `${location.origin}/pedido/${o.code}`;

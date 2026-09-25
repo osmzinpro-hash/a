@@ -450,6 +450,18 @@ main:focus{outline:none}
 .seg input:checked+span{background:var(--ink);color:var(--paper);box-shadow:none}
 .seg input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
 .eta{margin-top:10px;font-size:.9rem;color:var(--ink-2)}
+.cep-row{display:flex;gap:10px;align-items:center}
+.cep-row input{flex:1;min-width:0}
+.cep-help{flex:0 0 auto;font-size:.85rem;color:var(--ink-2);text-underline-offset:3px}
+.cep-status{min-height:1.2em;font-size:.92rem;font-weight:600;line-height:1.4}
+.cep-status:empty{display:none}
+.cep-status.is-ok{color:#1f6b28}
+.cep-status.is-error{color:#9b2508}
+.cep-status.is-busy{color:var(--ink-2);font-weight:400}
+.freight-calc{margin-bottom:18px;padding-bottom:18px;border-bottom:1px dashed #cdb99f}
+.freight-calc label{display:block;font:500 .78rem/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--ink-2);margin-bottom:10px}
+.freight-calc input{min-height:48px;padding:0 14px;border-radius:12px;border:1.5px solid #b9a58e;background:#fffaf1;color:var(--ink);font:500 1.05rem/1 var(--mono)}
+.freight-calc .cep-status{margin-top:10px}
 .pays{display:grid;gap:8px;margin-top:12px}
 .pay{position:relative;display:flex;align-items:center;gap:12px;min-height:50px;padding:0 14px;border-radius:12px;box-shadow:inset 0 0 0 1.5px #b9a58e;cursor:pointer;font-weight:600;transition:box-shadow .2s,background-color .2s}
 .pay input{position:absolute;opacity:0}

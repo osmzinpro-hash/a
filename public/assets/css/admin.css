@@ -82,3 +82,6 @@
   .order.print{position:absolute;left:0;top:0;width:80mm;box-shadow:none;border-radius:0}
   .order.print .order-actions{display:none}
 }
+
+.hint{margin-top:4px;color:var(--text-secondary);font-size:.92rem;line-height:1.5}
+#s-ranges{font-family:var(--mono);font-size:.95rem}

@@ -113,6 +113,15 @@
             </div>
           </fieldset>
           <fieldset>
+            <legend>Frete pelo CEP</legend>
+            <p class="hint">O cliente digita o CEP e o frete sai pela distância em linha reta até a loja. Uma faixa por linha: <b>até km | taxa | tempo</b>. Acima da última faixa, o site não aceita entrega. Se o mapa não achar o endereço, vale a taxa do bairro (aba Bairros).</p>
+            <div class="field"><label for="s-ranges">Faixas de frete</label><textarea id="s-ranges" name="delivery_ranges" rows="8" spellcheck="false"></textarea></div>
+            <div class="grid-2">
+              <div class="field"><label for="s-lat">Latitude da loja</label><input id="s-lat" name="store_lat" inputmode="decimal"></div>
+              <div class="field"><label for="s-lng">Longitude da loja</label><input id="s-lng" name="store_lng" inputmode="decimal"></div>
+            </div>
+          </fieldset>
+          <fieldset>
             <legend>Pedido</legend>
             <div class="grid-3">
               <div class="field"><label for="s-min">Pedido mínimo (R$)</label><input id="s-min" name="min_order" inputmode="decimal"></div>
