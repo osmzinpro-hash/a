@@ -17,9 +17,9 @@ for (const term of ['Rua', 'Avenida', 'Travessa']) {
 console.log(`CEPs de teste: ${picked.size} bairros diferentes\n`);
 let ok = 0, byDistance = 0;
 for (const r of [{ cep: '29936-050', bairro: 'Centro (loja)', logradouro: 'Av. Dr. Raimundo G. Sobrinho' }, ...picked.values()]) {
-  const q = await quoteDelivery({ cep: r.cep, number: '', settings: {}, neighborhoods, cache });
+  const q = await quoteDelivery({ cep: r.cep, number: '100', settings: {}, neighborhoods, cache });
   if (q.ok) { ok++; if (q.method === 'distancia') byDistance++; }
-  console.log(`${r.cep}  ${String(r.bairro).padEnd(24).slice(0, 24)}  ${q.ok ? `R$ ${(q.fee_cents / 100).toFixed(2)}  ${q.method.padEnd(9)} ${q.distance_km ?? '-'} km` : 'X  ' + q.error}`);
+  console.log(`${r.cep}  ${String(r.bairro).padEnd(26).slice(0, 26)} ${String(r.logradouro || '').padEnd(34).slice(0, 34)} ${q.ok ? `R$ ${(q.fee_cents / 100).toFixed(2)}  ${q.method.padEnd(9)} ${q.distance_km ?? '-'} km` : 'X  ' + q.error}`);
   await new Promise(r => setTimeout(r, 1100)); // respeita o limite do OpenStreetMap
 }
 console.log(`\n${ok} com frete calculado (${byDistance} pela distância, ${ok - byDistance} pelo bairro).`);
