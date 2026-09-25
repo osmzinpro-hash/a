@@ -23,9 +23,11 @@
   // WebM (VP9) é 3x mais leve e roda em Chrome, Edge, Firefox e Android; Safari fica com o MP4 (H.264).
   const appleOnly = /^((?!chrome|android|crios|fxios|edg).)*safari/i.test(navigator.userAgent);
   const useWebm = !appleOnly && video.canPlayType('video/webm; codecs="vp9"') !== '';
-  const VIDEO_URL = useWebm ? 'assets/video/hero-scrub.webm' : 'assets/video/hero-scrub.mp4';
-  const VIDEO_BYTES = useWebm ? 2189989 : 6843617;
-  const POSTER_URL = 'assets/img/hero-poster.jpg';
+  // Tela em pé (celular): vídeo vertical recortado no lanche, bem mais leve.
+  const portrait = matchMedia('(max-aspect-ratio: 4/5)').matches;
+  const VIDEO_URL = `assets/video/hero-scrub${portrait ? '-m' : ''}.${useWebm ? 'webm' : 'mp4'}`;
+  const VIDEO_BYTES = portrait ? (useWebm ? 774272 : 1425160) : (useWebm ? 2189989 : 6843617);
+  const POSTER_URL = portrait ? 'assets/img/hero-poster-m.jpg' : 'assets/img/hero-poster.jpg';
 
   // Divide os títulos em palavras (e cópias suave/nítida para o "clarear"), uma vez, com sorteio fixo.
   function rng(seed) { let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
@@ -190,14 +192,8 @@
     stage.classList.add('video-failed');
   }
 
-  // Os cinco portões do herói estático: idênticos aos do site.css, decididos ao vivo.
-  const GATES = [
-    '(max-width: 720px)',
-    '(orientation: portrait) and (max-width: 1024px)',
-    '(orientation: portrait) and (pointer: coarse)',
-    '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
-    '(prefers-reduced-motion: reduce)'
-  ];
+  // Herói estático só com movimento reduzido (igual ao site.css), decidido ao vivo.
+  const GATES = ['(prefers-reduced-motion: reduce)'];
   let scrubOn = false;
   function enableScrub() {
     if (scrubOn) return;

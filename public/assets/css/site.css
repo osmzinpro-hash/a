@@ -168,14 +168,21 @@ main:focus{outline:none}
 .static-title{font:400 clamp(2.4rem,10vw,4rem)/1.02 var(--display);margin-top:14px;text-wrap:balance}
 .hero-static .band-sub{max-width:32ch}
 
-/* Os cinco portões do herói estático: idênticos aos do site.js */
-@media (max-width: 720px){.hero{height:auto}.stage{display:none}.hero-static{display:block}}
-@media (orientation: portrait) and (max-width: 1024px){.hero{height:auto}.stage{display:none}.hero-static{display:block}}
-@media (orientation: portrait) and (pointer: coarse){.hero{height:auto}.stage{display:none}.hero-static{display:block}}
-@media (orientation: landscape) and (pointer: coarse) and (max-height: 560px){.hero{height:auto}.stage{display:none}.hero-static{display:block}}
+/* Herói estático só para quem pediu movimento reduzido (igual ao site.js). Celular e tablet têm a rolagem animada. */
 @media (prefers-reduced-motion: reduce){.hero{height:auto}.stage{display:none}.hero-static{display:block}}
 /* telas mais altas que 16:9: o vídeo corta nas laterais e o lanche cresce, então a coluna de texto afina */
 @media (max-aspect-ratio: 17/10){.band-left,.band-settle{width:min(400px,24.5vw)}.band-right{width:min(420px,26vw)}.band-title{font-size:clamp(1.9rem,3vw,3.2rem)}.band-settle .band-title{font-size:clamp(1.8rem,2.7vw,2.9rem)}}
+
+/* celular e tela em pé: vídeo vertical, texto embaixo sobre a tábua escura, lanche livre no meio */
+@media (max-aspect-ratio: 4/5){
+  .hero{height:520vh}
+  .band,.band-left,.band-right,.band-settle{left:16px;right:16px;top:auto;bottom:calc(28px + env(safe-area-inset-bottom));width:auto;transform:none;text-align:left}
+  .band::before{inset:-40% -30px -30% -30px;background:linear-gradient(to top,rgba(10,6,4,.88) 0%,rgba(10,6,4,.72) 55%,rgba(10,6,4,0) 100%)}
+  .band-title,.band-settle .band-title{font-size:clamp(1.9rem,8.4vw,2.6rem)}
+  .band-sub,.band-right .band-sub{margin-left:0;font-size:1rem;max-width:34ch}
+  .band-cta .btn{flex:1}
+  .loader{bottom:auto;top:calc(var(--nav-h) + 12px)}
+}
 @media (max-height: 620px){.loader{display:none}.band-settle{top:calc(var(--nav-h) + 2vh)}.band-title{font-size:clamp(2rem,3.6vw,3.2rem)}}
 
 /* ------------------------------------------------------------ faixa de banners */
