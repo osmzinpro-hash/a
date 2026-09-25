@@ -45,7 +45,7 @@ jobs:
           node-version: 22
 
       - name: Link project
-        run: npx --yes vercel@60 link --yes --project ditos-lanches --token "$VERCEL_TOKEN"
+        run: npx --yes vercel@60 link --yes --project a --token "$VERCEL_TOKEN"
 
       - name: Deploy
         env:
@@ -53,6 +53,18 @@ jobs:
           ADMIN_HASH: ${{ inputs.admin_hash }}
         run: |
           if [ "$MODE" = "production" ]; then
+            if printf '%s' "$ADMIN_HASH" | grep -Eq '^[0-9a-f]{64}$'; then
+              for e in production preview development; do
+                npx --yes vercel@60 env rm ADMIN_PASSWORD_SHA256 $e --yes --token "$VERCEL_TOKEN" >/dev/null 2>&1 || true
+                printf '%s' "$ADMIN_HASH" | npx --yes vercel@60 env add ADMIN_PASSWORD_SHA256 $e --token "$VERCEL_TOKEN" >/dev/null
+                if ! npx --yes vercel@60 env ls $e --token "$VERCEL_TOKEN" 2>/dev/null | grep -q SESSION_SECRET; then
+                  openssl rand -hex 32 | npx --yes vercel@60 env add SESSION_SECRET $e --token "$VERCEL_TOKEN" >/dev/null
+                fi
+                npx --yes vercel@60 env rm DITOS_PREVIEW $e --yes --token "$VERCEL_TOKEN" >/dev/null 2>&1 || true
+              done
+              echo "Senha do painel configurada."
+            fi
+            npx --yes vercel@60 env ls production --token "$VERCEL_TOKEN" | grep -Eo '^ *[A-Z_]+' | sort -u
             npx --yes vercel@60 deploy --prod --yes --token "$VERCEL_TOKEN" 2>&1 | tee deploy.log
           else
             if ! printf '%s' "$ADMIN_HASH" | grep -Eq '^[0-9a-f]{64}$'; then echo "admin_hash precisa ser um SHA-256 (64 caracteres hexadecimais)"; exit 1; fi
