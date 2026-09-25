@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Painel da cozinha | Ditos Lanches</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#17110e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M8 30C8 15 19 7 32 7s24 8 24 23z' fill='%23f5a31a'/%3E%3Crect x='6' y='34' width='52' height='7' rx='3.5' fill='%23d63d17'/%3E%3Cpath d='M9 45h46c0 7-6 12-13 12H22C15 57 9 52 9 45z' fill='%23f5a31a'/%3E%3C/svg%3E">
+  <link rel="preload" href="/assets/fonts/dela-gothic-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/admin.css">
+</head>
+<body class="admin">
+  <section class="login" data-login>
+    <form class="login-card" data-login-form>
+      <img src="/assets/img/logo.webp" alt="Ditos Lanches" width="120" height="93">
+      <h1>Painel da cozinha</h1>
+      <div class="field"><label for="pw">Senha</label><input id="pw" name="password" type="password" autocomplete="current-password" required></div>
+      <p class="form-error" data-login-error hidden></p>
+      <button class="btn btn-accent btn-block" type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <div class="app" data-app hidden>
+    <header class="bar">
+      <img src="/assets/img/logo.webp" alt="Ditos Lanches" width="64" height="50">
+      <nav class="tabs" role="tablist" aria-label="Seções do painel">
+        <button role="tab" aria-selected="true" data-tab="pedidos">Pedidos <span class="tab-badge" data-new hidden></span></button>
+        <button role="tab" aria-selected="false" data-tab="cardapio">Cardápio</button>
+        <button role="tab" aria-selected="false" data-tab="bairros">Bairros</button>
+        <button role="tab" aria-selected="false" data-tab="loja">Loja</button>
+      </nav>
+      <div class="bar-right">
+        <span class="store-pill" data-store-pill>...</span>
+        <button class="btn btn-ghost btn-sm" type="button" data-logout>Sair</button>
+      </div>
+    </header>
+
+    <main class="panes">
+      <!-- PEDIDOS -->
+      <section class="pane" data-pane="pedidos">
+        <div class="pane-head">
+          <div class="stats">
+            <div><span>Pedidos hoje</span><b data-stat-orders>0</b></div>
+            <div><span>Vendido hoje</span><b data-stat-revenue>R$ 0,00</b></div>
+          </div>
+          <div class="seg seg-dark" role="group" aria-label="Filtro">
+            <label><input type="radio" name="scope" value="open" checked><span>Em aberto</span></label>
+            <label><input type="radio" name="scope" value="today"><span>Hoje</span></label>
+            <label><input type="radio" name="scope" value="week"><span>7 dias</span></label>
+          </div>
+          <button class="btn btn-ghost btn-sm" type="button" data-sound>🔔 Ativar som de novo pedido</button>
+        </div>
+        <div class="orders" data-orders></div>
+        <p class="empty" data-orders-empty hidden>Nenhum pedido aqui ainda. Quando chegar, aparece sozinho.</p>
+      </section>
+
+      <!-- CARDÁPIO -->
+      <section class="pane" data-pane="cardapio" hidden>
+        <div class="pane-head"><h2>Cardápio</h2><p>Mude preço, tire um lanche do ar ou coloque de volta. O site atualiza na hora.</p></div>
+        <div data-catalog></div>
+      </section>
+
+      <!-- BAIRROS -->
+      <section class="pane" data-pane="bairros" hidden>
+        <div class="pane-head"><h2>Bairros e taxas de entrega</h2><p>A taxa aparece para o cliente antes de fechar o pedido.</p></div>
+        <form class="row-form" data-new-hood>
+          <input name="name" placeholder="Novo bairro" required>
+          <input name="fee" inputmode="decimal" placeholder="Taxa (ex.: 8,00)" required>
+          <input name="eta" placeholder="Tempo (ex.: 30 a 40 min)">
+          <button class="btn btn-accent btn-sm" type="submit">Adicionar</button>
+        </form>
+        <div data-hoods-admin></div>
+      </section>
+
+      <!-- LOJA -->
+      <section class="pane" data-pane="loja" hidden>
+        <div class="pane-head"><h2>Loja</h2><p>Horário, WhatsApp, chave Pix e regras do pedido.</p></div>
+        <form class="settings" data-settings>
+          <fieldset>
+            <legend>Aberto ou fechado</legend>
+            <div class="seg seg-dark">
+              <label><input type="radio" name="store_mode" value="auto"><span>Pelo horário</span></label>
+              <label><input type="radio" name="store_mode" value="open"><span>Aberto agora</span></label>
+              <label><input type="radio" name="store_mode" value="closed"><span>Fechado agora</span></label>
+            </div>
+            <div class="grid-3">
+              <div class="field"><label for="s-open">Abre às</label><input id="s-open" name="open_time" type="time"></div>
+              <div class="field"><label for="s-close">Fecha às</label><input id="s-close" name="close_time" type="time"></div>
+              <div class="field"><label for="s-days">Dias (0 = domingo)</label><input id="s-days" name="open_days" placeholder="0,2,3,4,5,6"></div>
+            </div>
+            <div class="field"><label for="s-hours">Horário mostrado no site</label><input id="s-hours" name="hours_label"></div>
+            <div class="field"><label for="s-closedmsg">Mensagem quando fechado</label><input id="s-closedmsg" name="closed_message"></div>
+          </fieldset>
+          <fieldset>
+            <legend>Contato</legend>
+            <div class="grid-2">
+              <div class="field"><label for="s-wa">WhatsApp (com DDD)</label><input id="s-wa" name="whatsapp" inputmode="tel" placeholder="27999999999"></div>
+              <div class="field"><label for="s-phone">Telefone</label><input id="s-phone" name="phone" inputmode="tel"></div>
+            </div>
+            <div class="field"><label for="s-addr">Endereço</label><input id="s-addr" name="address"></div>
+            <div class="field"><label for="s-ig">Instagram</label><input id="s-ig" name="instagram"></div>
+          </fieldset>
+          <fieldset>
+            <legend>Pix</legend>
+            <label class="check"><input type="checkbox" name="pix_enabled" value="1"> Aceitar Pix pelo site</label>
+            <div class="field"><label for="s-pixkey">Chave Pix</label><input id="s-pixkey" name="pix_key" placeholder="CNPJ, telefone, e-mail ou chave aleatória"></div>
+            <div class="grid-2">
+              <div class="field"><label for="s-pixname">Nome do recebedor</label><input id="s-pixname" name="pix_name" maxlength="25"></div>
+              <div class="field"><label for="s-pixcity">Cidade do recebedor</label><input id="s-pixcity" name="pix_city" maxlength="15"></div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Pedido</legend>
+            <div class="grid-3">
+              <div class="field"><label for="s-min">Pedido mínimo (R$)</label><input id="s-min" name="min_order" inputmode="decimal"></div>
+              <div class="field"><label for="s-prep">Tempo de entrega</label><input id="s-prep" name="avg_prep"></div>
+              <div class="field"><label for="s-pick">Tempo de retirada</label><input id="s-pick" name="pickup_eta"></div>
+            </div>
+            <label class="check"><input type="checkbox" name="delivery_enabled" value="1"> Fazer entregas</label>
+            <label class="check"><input type="checkbox" name="pickup_enabled" value="1"> Permitir retirada no balcão</label>
+          </fieldset>
+          <p class="saved" data-saved hidden>Salvo.</p>
+          <button class="btn btn-accent" type="submit">Salvar</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="/assets/js/admin.js" defer></script>
+</body>
+</html>

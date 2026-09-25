@@ -2,7 +2,7 @@
 // Zero dependências: Node 22.5+ com o SQLite embutido (node:sqlite).
 // Serve o site em public/, a API da loja em /api e o painel da cozinha em /admin.
 import { createServer } from 'node:http';
-import { readFile, stat } from 'node:fs/promises';
+import { readFile, stat, writeFile, mkdir } from 'node:fs/promises';
 import { createReadStream, existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { join, normalize, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -294,6 +294,16 @@ function menuPayload() {
   };
 }
 
+// Cópia estática do cardápio para quando o site estiver sem servidor (pedido vai por WhatsApp).
+async function writeFallbackMenu() {
+  try {
+    const menu = menuPayload();
+    menu.store = { ...menu.store, open: true, message: 'Pedidos pelo WhatsApp', payments: menu.store.payments.filter(p => p.id !== 'pix') };
+    await mkdir(join(PUBLIC, 'assets', 'data'), { recursive: true });
+    await writeFile(join(PUBLIC, 'assets', 'data', 'menu.json'), JSON.stringify(menu));
+  } catch (err) { console.warn('[aviso] não consegui salvar a cópia estática do cardápio:', err.message); }
+}
+
 const CODE_ALPHABET = '23456789ABCDEFGHJKMNPQRSTUVWXYZ';
 function newCode() {
   for (;;) {
@@ -423,7 +433,7 @@ function publicOrder(row, s = getSettings()) {
 }
 
 // ---------------------------------------------------------------- painel (admin)
-const adminOrder = row => ({ ...publicOrder(row), customer_name: row.customer_name, customer_phone: row.customer_phone, address: JSON.parse(row.address || '{}'), notes: row.notes, change_for_cents: row.change_for_cents, updated_at: row.updated_at });
+const adminOrder = row => ({ ...publicOrder(row), id: row.id, customer_name: row.customer_name, customer_phone: row.customer_phone, address: JSON.parse(row.address || '{}'), notes: row.notes, change_for_cents: row.change_for_cents, updated_at: row.updated_at });
 
 const EDITABLE_SETTINGS = ['store_name', 'whatsapp', 'phone', 'address', 'address_2', 'hours_label', 'instagram', 'min_order', 'pickup_enabled', 'delivery_enabled', 'pix_enabled', 'pix_key', 'pix_name', 'pix_city', 'store_mode', 'open_time', 'close_time', 'open_days', 'closed_message', 'avg_prep', 'pickup_eta'];
 
@@ -489,9 +499,11 @@ async function handleAdmin(req, res, path, url) {
     if (!db.prepare('SELECT 1 FROM categories WHERE id = ?').get(fields[0])) return fail(res, 400, 'Categoria inválida.');
     if (req.method === 'POST') {
       const info = db.prepare('INSERT INTO products (category_id, name, description, price_cents, image, badge, active, sort) VALUES (?, ?, ?, ?, ?, ?, ?, 999)').run(...fields);
+      writeFallbackMenu();
       return send(res, 201, db.prepare('SELECT * FROM products WHERE id = ?').get(Number(info.lastInsertRowid)));
     }
     db.prepare('UPDATE products SET category_id = ?, name = ?, description = ?, price_cents = ?, image = ?, badge = ?, active = ? WHERE id = ?').run(...fields, Number(productMatch[1]));
+    writeFallbackMenu();
     return send(res, 200, db.prepare('SELECT * FROM products WHERE id = ?').get(Number(productMatch[1])));
   }
   const nbMatch = path.match(/^\/api\/admin\/neighborhoods(?:\/(\d+))?$/);
@@ -503,6 +515,7 @@ async function handleAdmin(req, res, path, url) {
       if (req.method === 'POST') db.prepare('INSERT INTO neighborhoods (name, fee_cents, eta, active) VALUES (?, ?, ?, ?)').run(name, fee, eta, active);
       else db.prepare('UPDATE neighborhoods SET name = ?, fee_cents = ?, eta = ?, active = ? WHERE id = ?').run(name, fee, eta, active, Number(nbMatch[1]));
     } catch { return fail(res, 409, 'Esse bairro já existe.'); }
+    writeFallbackMenu();
     return send(res, 200, { ok: true });
   }
   const optionMatch = path.match(/^\/api\/admin\/options\/(\d+)$/);
@@ -511,11 +524,13 @@ async function handleAdmin(req, res, path, url) {
     const title = clean(b.title, 60), price = Math.max(0, Math.round(Number(b.price_cents) || 0)), active = b.active === false || b.active === 0 ? 0 : 1;
     if (!title) return fail(res, 400, 'Informe o nome da opção.');
     db.prepare('UPDATE options SET title = ?, price_cents = ?, active = ? WHERE id = ?').run(title, price, active, Number(optionMatch[1]));
+    writeFallbackMenu();
     return send(res, 200, { ok: true });
   }
   if (path === '/api/admin/settings' && req.method === 'PUT') {
     const b = await readJson(req);
     for (const [k, v] of Object.entries(b)) if (EDITABLE_SETTINGS.includes(k)) setSetting.run(k, clean(v, 300));
+    writeFallbackMenu();
     return send(res, 200, { ok: true, store: storeStatus() });
   }
   return fail(res, 404, 'Rota não encontrada.');
@@ -557,4 +572,5 @@ const server = createServer(async (req, res) => {
   }
 });
 
+writeFallbackMenu();
 server.listen(PORT, () => console.log(`Ditos Lanches no ar em http://localhost:${PORT}  (painel: /admin)`));

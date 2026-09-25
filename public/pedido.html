@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Seu pedido | Ditos Lanches</title>
+  <meta name="description" content="Acompanhe seu pedido da Ditos Lanches em tempo real.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#17110e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M8 30C8 15 19 7 32 7s24 8 24 23z' fill='%23f5a31a'/%3E%3Crect x='6' y='34' width='52' height='7' rx='3.5' fill='%23d63d17'/%3E%3Cpath d='M9 45h46c0 7-6 12-13 12H22C15 57 9 52 9 45z' fill='%23f5a31a'/%3E%3C/svg%3E">
+  <link rel="preload" href="/assets/fonts/dela-gothic-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/pedido.css">
+</head>
+<body class="track-page">
+  <div class="env" aria-hidden="true"><div class="env-glow"></div><div class="env-embers"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="env-grain"></div></div>
+  <header class="nav is-solid">
+    <a class="brand" href="/" aria-label="Voltar ao site da Ditos Lanches"><img src="/assets/img/logo.webp" alt="Ditos Lanches" width="120" height="93"></a>
+    <div class="nav-actions"><a class="btn btn-ghost btn-sm" href="/#cardapio">Pedir de novo</a></div>
+  </header>
+
+  <main id="main" class="track wrap" tabindex="-1">
+    <section class="track-head">
+      <p class="kicker kicker-dot" data-updated>Acompanhando ao vivo</p>
+      <h1 class="track-title" data-headline>Carregando seu pedido...</h1>
+      <p class="lede" data-subline></p>
+    </section>
+
+    <div class="track-grid">
+      <section class="ticket" aria-labelledby="ticket-t">
+        <div class="ticket-top">
+          <p class="ticket-meta">Ditos Lanches · comanda</p>
+          <h2 id="ticket-t" class="ticket-num" data-number>#...</h2>
+          <p class="ticket-code" data-code></p>
+          <span class="stamp" data-stamp hidden></span>
+        </div>
+        <ol class="progress" data-progress aria-label="Etapas do pedido"></ol>
+        <ul class="lines" data-lines role="list"></ul>
+        <dl class="totals" data-totals></dl>
+        <p class="ticket-foot" data-pay></p>
+      </section>
+
+      <aside class="track-side">
+        <section class="pix" data-pix hidden aria-labelledby="pix-t">
+          <h2 id="pix-t">Pague com Pix</h2>
+          <p>Abra o app do seu banco, escolha Pix e leia o código ou use o copia e cola. A cozinha confirma assim que o pagamento cair.</p>
+          <div class="pix-qr" data-qr aria-label="QR Code do Pix" role="img"></div>
+          <label class="pix-copy">
+            <span>Pix copia e cola</span>
+            <textarea readonly rows="3" data-pix-code></textarea>
+          </label>
+          <button class="btn btn-accent btn-block" type="button" data-copy>Copiar código Pix</button>
+          <p class="pix-total" data-pix-total></p>
+        </section>
+        <section class="paid" data-paid hidden>
+          <h2>Pagamento confirmado</h2>
+          <p>Tudo certo com o Pix. Agora é com a chapa.</p>
+        </section>
+        <section class="help">
+          <h2>Algum problema?</h2>
+          <p>Fale com a gente informando o número do pedido.</p>
+          <a class="btn btn-ghost btn-block" data-whats href="#" target="_blank" rel="noopener" hidden>Chamar no WhatsApp</a>
+          <a class="btn btn-ghost btn-block" href="https://www.instagram.com/ditoslanches" target="_blank" rel="noopener">Instagram @ditoslanches</a>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <script src="/assets/vendor/qrcode.js" defer></script>
+  <script src="/assets/js/pedido.js" defer></script>
+</body>
+</html>

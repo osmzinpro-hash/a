@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ditos Lanches | Hambúrguer na chapa em São Mateus, com entrega</title>
+  <meta name="description" content="Hambúrguer artesanal na chapa em São Mateus desde 2002. Peça pelo site, pague no Pix ou na entrega e acompanhe seu pedido até a sua porta.">
+  <meta name="theme-color" content="#17110e">
+  <!-- DEPLOY STEP: troque pelo endereço real do site -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ditos Lanches | Saiu da chapa, chega quente">
+  <meta property="og:description" content="Hambúrguer artesanal em São Mateus desde 2002. Peça pelo site e acompanhe seu pedido.">
+  <meta property="og:image" content="assets/img/hero-ending.jpg">
+  <meta property="og:url" content="/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M8 30C8 15 19 7 32 7s24 8 24 23z' fill='%23f5a31a'/%3E%3Crect x='6' y='34' width='52' height='7' rx='3.5' fill='%23d63d17'/%3E%3Cpath d='M9 45h46c0 7-6 12-13 12H22C15 57 9 52 9 45z' fill='%23f5a31a'/%3E%3C/svg%3E">
+  <link rel="preload" href="assets/fonts/dela-gothic-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Pular para o conteúdo</a>
+
+  <!-- Fundo fixo: brasa distante e fagulhas, um ambiente só para a página inteira -->
+  <div class="env" aria-hidden="true">
+    <div class="env-glow"></div>
+    <div class="env-embers"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="env-grain"></div>
+  </div>
+
+  <header class="nav" data-nav>
+    <a class="brand" href="#topo" aria-label="Ditos Lanches, voltar ao topo">
+      <img src="assets/img/logo.webp" alt="Ditos Lanches, desde 2002" width="120" height="93">
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#cardapio">Cardápio</a>
+      <a href="#chapa">Como fazemos</a>
+      <a href="#entrega">Entrega</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="nav-track" href="#" data-last-order hidden>Meu pedido</a>
+      <button class="nav-bag" type="button" data-open-cart aria-label="Abrir comanda">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12l1 18H5L6 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 8h12M9 12l1.5 1.5L9 15m6-3-1.5 1.5L15 15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="bag-badge" data-cart-badge hidden></span>
+      </button>
+      <a class="btn btn-accent btn-sm" href="#cardapio">Pedir agora</a>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ============================================================ HERÓI: o vídeo anda com a rolagem -->
+    <section class="hero" id="topo" aria-label="Ditos Lanches, saiu da chapa agora">
+      <div class="stage" data-stage>
+        <div class="poster" data-poster aria-hidden="true"></div>
+        <video class="hero-video" data-video preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+        <div class="scrim" aria-hidden="true"></div>
+
+        <div class="band band-left" data-band data-range="0,0.24" data-entrance="rise">
+          <p class="kicker">Ditos Lanches · São Mateus, desde 2002</p>
+          <h1 class="band-title" data-split>Saiu da chapa agora.</h1>
+          <p class="band-sub">Hambúrguer artesanal, feito na hora que o seu pedido chega.</p>
+        </div>
+
+        <div class="band band-right" data-band data-range="0.27,0.50" data-entrance="clear">
+          <h2 class="band-title" data-split>Carne selada na hora.</h2>
+          <p class="band-sub">Pão tostado na manteiga, queijo derretendo de verdade.</p>
+        </div>
+
+        <div class="band band-left" data-band data-range="0.53,0.75" data-entrance="punch">
+          <h2 class="band-title" data-split>Chega quente na sua porta.</h2>
+          <p class="band-sub">Entrega própria em 56 bairros de São Mateus. Você acompanha cada passo do pedido.</p>
+        </div>
+
+        <div class="band band-settle" data-band data-range="0.79,1" data-entrance="settle" data-ramp="0.05">
+          <h2 class="band-title" data-split>A maior hamburgueria de São Mateus.</h2>
+          <p class="band-sub band-sub-late">Monte seu pedido em dois minutos. A chapa já está quente.</p>
+          <div class="band-cta">
+            <a class="btn btn-accent" href="#cardapio">Pedir agora</a>
+            <a class="btn btn-ghost" href="#destaques">Ver os destaques</a>
+          </div>
+        </div>
+
+        <div class="loader" data-loader aria-hidden="true">
+          <svg class="ring" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-opacity=".2" stroke-width="3"/><circle class="ring-fill" cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="126" stroke-linecap="round"/></svg>
+          <span>Role para descer na chapa</span>
+        </div>
+      </div>
+
+      <!-- Herói estático: celulares e movimento reduzido -->
+      <div class="hero-static">
+        <div class="hero-static-img" aria-hidden="true"></div>
+        <div class="hero-static-copy">
+          <p class="kicker">Ditos Lanches · São Mateus, desde 2002</p>
+          <h1 class="static-title">Saiu da chapa, chega quente.</h1>
+          <p class="band-sub">Hambúrguer artesanal em São Mateus desde 2002. Peça pelo site e acompanhe seu pedido até a sua porta.</p>
+          <div class="band-cta">
+            <a class="btn btn-accent" href="#cardapio">Pedir agora</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ FAIXA DE BANNERS rolando para a direita -->
+    <section class="deals" id="destaques" aria-labelledby="deals-t">
+      <div class="deals-head wrap">
+        <p class="kicker kicker-dot">Saindo da chapa agora</p>
+        <h2 id="deals-t" class="section-title">Os destaques da casa.</h2>
+      </div>
+      <div class="marquee" data-marquee>
+        <div class="marquee-track" data-marquee-track>
+          <article class="deal" data-deal>
+            <video class="deal-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="assets/banners/combo.mp4" poster="assets/banners/combo.jpg"></video>
+            <div class="deal-copy">
+              <p class="deal-kicker">Pra dividir</p>
+              <h3>Combo Casal Clássico</h3>
+              <p>2 Clássicos, fritas com cheddar e bacon, anéis de cebola.</p>
+              <button class="btn btn-accent btn-sm" type="button" data-product-slug="combo-casal-classico">Pedir · R$ 89,00</button>
+            </div>
+          </article>
+          <article class="deal" data-deal>
+            <video class="deal-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="assets/banners/smash.mp4" poster="assets/banners/smash.jpg"></video>
+            <div class="deal-copy">
+              <p class="deal-kicker">Direto da chapa</p>
+              <h3>Double Bacon</h3>
+              <p>Duas carnes, cheddar em dobro, bacon e cebola crocante.</p>
+              <button class="btn btn-accent btn-sm" type="button" data-product-slug="double-bacon">Pedir · R$ 45,00</button>
+            </div>
+          </article>
+          <article class="deal" data-deal>
+            <video class="deal-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="assets/banners/batata.mp4" poster="assets/banners/batata.jpg"></video>
+            <div class="deal-copy">
+              <p class="deal-kicker">Pra acompanhar</p>
+              <h3>Batata Turbinada</h3>
+              <p>300g de fritas com duas coberturas que você escolhe.</p>
+              <button class="btn btn-accent btn-sm" type="button" data-product-slug="batata-turbinada">Pedir · R$ 50,00</button>
+            </div>
+          </article>
+          <article class="deal" data-deal>
+            <video class="deal-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="assets/banners/refri.mp4" poster="assets/banners/refri.jpg"></video>
+            <div class="deal-copy">
+              <p class="deal-kicker">Sempre gelada</p>
+              <h3>Bebida gelada de verdade</h3>
+              <p>Refri, suco natural e água. Do jeito que você elogia.</p>
+              <a class="btn btn-accent btn-sm" href="#cat-bebidas" data-jump-cat="bebidas">Ver bebidas</a>
+            </div>
+          </article>
+          <article class="deal" data-deal>
+            <video class="deal-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="assets/banners/churros.mp4" poster="assets/banners/churros.jpg"></video>
+            <div class="deal-copy">
+              <p class="deal-kicker">Pra fechar</p>
+              <h3>Churros Espanhol</h3>
+              <p>10 churros fininhos, com doce de leite ou chocolate.</p>
+              <button class="btn btn-accent btn-sm" type="button" data-product-slug="churros-espanhol">Pedir · R$ 25,00</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <svg class="heatline" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true" data-draw><path d="M0 30 C 100 5, 200 55, 300 30 S 500 5, 600 30 S 800 55, 900 30 S 1100 5, 1200 30"/></svg>
+
+    <!-- ============================================================ CARDÁPIO -->
+    <section class="menu" id="cardapio" aria-labelledby="menu-t">
+      <div class="wrap menu-top">
+        <div class="menu-head reveal">
+          <p class="kicker kicker-dot">Cardápio completo</p>
+          <h2 id="menu-t" class="section-title">O cardápio inteiro, a um toque.</h2>
+          <p class="lede">Escolha, ajuste do seu jeito e mande pra chapa. Seus adicionais e observações vão direto pra cozinha.</p>
+        </div>
+        <p class="store-status reveal" data-store-status><span class="dot" aria-hidden="true"></span><span data-status-text>Carregando o cardápio...</span></p>
+      </div>
+      <nav class="cat-bar" aria-label="Categorias do cardápio"><div class="cat-track wrap" data-cat-bar></div></nav>
+      <div class="wrap menu-body" data-menu></div>
+    </section>
+
+    <!-- ============================================================ COMO A GENTE FAZ + momento interativo -->
+    <section class="craft" id="chapa" aria-labelledby="craft-t">
+      <div class="wrap craft-grid">
+        <div class="craft-copy reveal">
+          <p class="kicker kicker-dot">Como a gente faz</p>
+          <h2 id="craft-t" class="section-title">Nada fica esperando pronto.</h2>
+          <p class="lede">O lanche só vai pra chapa quando o seu pedido chega. Por isso ele não chega frio, nem remexido.</p>
+          <div class="sear" data-sear>
+            <button class="sear-btn" type="button" data-sear-btn aria-describedby="sear-help">
+              <svg class="sear-ring" viewBox="0 0 120 120" aria-hidden="true">
+                <circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-opacity=".18" stroke-width="4"/>
+                <circle class="sear-fill" cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="339.3"/>
+              </svg>
+              <svg class="patty" viewBox="0 0 80 80" aria-hidden="true">
+                <defs>
+                  <radialGradient id="raw" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#b5545a"/><stop offset="1" stop-color="#6e2a31"/></radialGradient>
+                  <radialGradient id="seared" cx="50%" cy="40%" r="65%"><stop offset="0" stop-color="#7a4527"/><stop offset=".7" stop-color="#43220f"/><stop offset="1" stop-color="#2a150a"/></radialGradient>
+                </defs>
+                <ellipse cx="40" cy="47" rx="31" ry="9" fill="#120c09" opacity=".5"/>
+                <ellipse cx="40" cy="44" rx="30" ry="21" fill="url(#raw)"/>
+                <g fill="#e8a0a0" opacity=".55"><circle cx="28" cy="38" r="1.6"/><circle cx="36" cy="46" r="1.3"/><circle cx="47" cy="37" r="1.5"/><circle cx="52" cy="48" r="1.2"/><circle cx="31" cy="51" r="1.1"/><circle cx="43" cy="53" r="1.4"/><circle cx="57" cy="41" r="1"/><circle cx="22" cy="45" r="1"/></g>
+                <ellipse class="patty-sear" cx="40" cy="44" rx="30" ry="21" fill="url(#seared)"/>
+                <g class="patty-sear" fill="none" stroke="#1f0f06" stroke-width="2.4" stroke-linecap="round" opacity=".7"><path d="M22 38l10 14M32 34l12 17M44 32l12 17"/></g>
+                <g class="patty-steam" fill="none" stroke="#f4ead8" stroke-width="2" stroke-linecap="round"><path d="M28 18c-3-4 3-6 0-10"/><path d="M40 16c-3-4 3-6 0-10"/><path d="M52 18c-3-4 3-6 0-10"/></g>
+              </svg>
+              <span class="sear-label" data-sear-label>Segure para selar a carne</span>
+            </button>
+            <p class="sear-help" id="sear-help" data-sear-help>Pressione e segure. É o tempo de uma carne encostar na chapa quente.</p>
+          </div>
+        </div>
+        <ol class="steps" data-steps>
+          <li class="pstep">
+            <figure><img src="assets/img/passo-1-pao.webp" alt="Pães brioche tostando na manteiga sobre a chapa" loading="lazy" width="960" height="720"></figure>
+            <span class="step-n">01</span>
+            <h3>O pedido chega e a chapa acende.</h3>
+            <p>Seu pedido cai direto na cozinha. O pão vai tostar na manteiga na mesma hora.</p>
+          </li>
+          <li class="pstep">
+            <figure><img src="assets/img/passo-2-chapa.webp" alt="Carnes selando na chapa com cheddar derretendo" loading="lazy" width="960" height="720"></figure>
+            <span class="step-n">02</span>
+            <h3>Carne selada, queijo derretendo.</h3>
+            <p>Blend da casa na chapa bem quente, com crosta por fora e suculento por dentro.</p>
+          </li>
+          <li class="pstep">
+            <figure><img src="assets/img/passo-3-entrega.webp" alt="Sacola de delivery fechada no balcão, pronta para o motoboy" loading="lazy" width="960" height="720"></figure>
+            <span class="step-n">03</span>
+            <h3>Embalado fechado, direto pro motoboy.</h3>
+            <p>A sacola sai lacrada da chapa pra sua porta. Nada de passar de mão em mão.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <svg class="heatline" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true" data-draw><path d="M0 30 C 100 55, 200 5, 300 30 S 500 55, 600 30 S 800 5, 900 30 S 1100 55, 1200 30"/></svg>
+
+    <!-- ============================================================ ENTREGA -->
+    <section class="delivery" id="entrega" aria-labelledby="delivery-t">
+      <div class="wrap delivery-grid">
+        <div class="delivery-copy reveal">
+          <p class="kicker kicker-dot">Entrega própria</p>
+          <h2 id="delivery-t" class="section-title">Quente na porta, sem mistério.</h2>
+          <p class="lede">A taxa do seu bairro aparece antes de você fechar o pedido. Depois, é só acompanhar pela tela.</p>
+          <ol class="timeline" aria-label="Etapas do pedido">
+            <li><span class="tl-dot" aria-hidden="true"></span><b>Recebido</b><span>A cozinha vê seu pedido na hora.</span></li>
+            <li><span class="tl-dot" aria-hidden="true"></span><b>Na chapa</b><span>Carne selando, pão tostando.</span></li>
+            <li><span class="tl-dot" aria-hidden="true"></span><b>Saiu pra entrega</b><span>Sacola fechada, motoboy na rua.</span></li>
+            <li><span class="tl-dot" aria-hidden="true"></span><b>Entregue</b><span>Quente na sua mão.</span></li>
+          </ol>
+          <p class="pickup"><b>Prefere buscar?</b> Retire no balcão em 15 a 25 minutos, na <span data-store-address>Av. Dr. Raimundo Guilherme Sobrinho, 469, Centro</span>.</p>
+        </div>
+        <div class="hoods reveal">
+          <label class="hoods-search">
+            <span>Procure seu bairro</span>
+            <input type="search" placeholder="Ex.: Centro, Sernamby, Boa Vista" data-hood-search autocomplete="off">
+          </label>
+          <ul class="hoods-list" data-hoods role="list"></ul>
+          <p class="hoods-empty" data-hoods-empty hidden>Não achamos esse bairro na lista. Chame a gente que a gente vê se dá pra entregar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ AVALIAÇÕES -->
+    <section class="quotes" id="avaliacoes" aria-labelledby="quotes-t">
+      <div class="wrap">
+        <p class="kicker kicker-dot reveal">O que dizem por aí</p>
+        <h2 id="quotes-t" class="section-title reveal">Quem prova, volta.</h2>
+        <div class="quote-row">
+          <figure class="quote reveal"><blockquote>A comida é sensacional e o preço é justo.</blockquote></figure>
+          <figure class="quote quote-mid reveal"><blockquote>Bebida sempre gelada.</blockquote></figure>
+          <figure class="quote reveal"><blockquote>Melhor lugar pra ir com a família.</blockquote></figure>
+        </div>
+        <p class="quote-note reveal">Trechos de avaliações públicas de clientes.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================ DÚVIDAS -->
+    <section class="faq" id="duvidas" aria-labelledby="faq-t">
+      <div class="wrap faq-grid">
+        <div class="reveal">
+          <p class="kicker kicker-dot">Dúvidas</p>
+          <h2 id="faq-t" class="section-title">Antes de pedir.</h2>
+        </div>
+        <div class="faq-list">
+          <details class="reveal"><summary>Chega quente mesmo?</summary><p>Chega. O lanche só entra na chapa quando o pedido é confirmado e sai embalado fechado direto pro motoboy.</p></details>
+          <details class="reveal"><summary>Quanto tempo demora?</summary><p>Na maioria dos bairros, entre 30 e 50 minutos. Na página do pedido você vê cada etapa.</p></details>
+          <details class="reveal"><summary>Quais bairros vocês atendem?</summary><p>Os 56 bairros de São Mateus da lista de entrega. A taxa aparece antes de você fechar o pedido.</p></details>
+          <details class="reveal"><summary>Como eu pago?</summary><p>Pix pelo site, ou cartão, vale-refeição e dinheiro na entrega. Se precisar de troco, é só avisar.</p></details>
+          <details class="reveal"><summary>Posso tirar ou trocar ingrediente?</summary><p>Pode. Cada lanche tem adicionais e um campo de observação.</p></details>
+          <details class="reveal"><summary>E se vier algo errado?</summary><p>Chama a gente com o número do pedido e a gente resolve na hora.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ CHAMADA FINAL -->
+    <section class="closer" aria-labelledby="closer-t">
+      <div class="closer-img" aria-hidden="true"></div>
+      <div class="wrap closer-copy reveal">
+        <h2 id="closer-t" class="closer-title">A chapa já está quente.</h2>
+        <p class="lede">Terça a domingo, das 18h às 23h.</p>
+        <a class="btn btn-accent btn-lg" href="#cardapio">Pedir agora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-grid">
+      <img src="assets/img/logo.webp" alt="Ditos Lanches" width="120" height="93" loading="lazy">
+      <div>
+        <h3>Onde estamos</h3>
+        <p data-store-address>Av. Dr. Raimundo Guilherme Sobrinho, 469, Centro, São Mateus - ES</p>
+        <p data-store-hours>Terça a domingo, das 18h às 23h</p>
+      </div>
+      <div>
+        <h3>Fale com a gente</h3>
+        <p><a href="https://www.instagram.com/ditoslanches" rel="noopener" target="_blank">Instagram @ditoslanches</a></p>
+        <p data-store-whats hidden><a href="#" rel="noopener" target="_blank">WhatsApp</a></p>
+        <p data-store-phone hidden></p>
+      </div>
+    </div>
+    <p class="wrap foot-small">© Ditos Lanches · São Mateus, ES · Pedidos online com entrega própria</p>
+  </footer>
+
+  <!-- ============================================================ CAMADAS: produto, comanda -->
+  <button class="fab" type="button" data-open-cart hidden>
+    <span class="fab-count" data-cart-count>0</span>
+    <span class="fab-label">Ver comanda</span>
+    <span class="fab-total" data-cart-total>R$ 0,00</span>
+  </button>
+
+  <div class="layer sheet" id="product-sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden>
+    <div class="sheet-panel">
+      <button class="close" type="button" data-close-sheet aria-label="Fechar">×</button>
+      <div class="sheet-body"></div>
+      <div class="sheet-foot"></div>
+    </div>
+  </div>
+
+  <div class="layer drawer" id="comanda" role="dialog" aria-modal="true" aria-labelledby="comanda-title" hidden>
+    <aside class="drawer-panel">
+      <div class="ticket-edge" aria-hidden="true"></div>
+      <header class="drawer-head">
+        <div>
+          <p class="ticket-meta">Ditos Lanches · comanda</p>
+          <h2 id="comanda-title">Sua comanda</h2>
+        </div>
+        <button class="close" type="button" data-close-cart aria-label="Fechar comanda">×</button>
+      </header>
+      <div class="drawer-scroll">
+        <div data-step-cart>
+          <ul class="lines" data-cart-lines role="list"></ul>
+          <dl class="totals">
+            <div><dt>Subtotal</dt><dd data-sub>R$ 0,00</dd></div>
+          </dl>
+          <p class="min-note" data-min-note hidden></p>
+          <button class="btn btn-accent btn-block" type="button" data-go-checkout disabled>Fechar pedido</button>
+          <button class="link-btn link-center" type="button" data-close-cart>Continuar escolhendo</button>
+        </div>
+
+        <form id="checkout" data-step-checkout hidden novalidate>
+          <button class="link-btn" type="button" data-back-cart>← Voltar pra comanda</button>
+          <fieldset>
+            <legend>Quem vai receber</legend>
+            <div class="field"><label for="f-name">Seu nome</label><input id="f-name" name="name" autocomplete="name" required minlength="2" maxlength="80"></div>
+            <div class="field"><label for="f-phone">WhatsApp</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(27) 99999-9999"></div>
+          </fieldset>
+          <fieldset>
+            <legend>Como quer receber</legend>
+            <div class="seg">
+              <label data-delivery><input type="radio" name="fulfillment" value="delivery" checked><span>Entrega</span></label>
+              <label data-pickup><input type="radio" name="fulfillment" value="pickup"><span>Retirar no balcão</span></label>
+            </div>
+            <p class="eta" data-eta></p>
+            <div data-address>
+              <div class="field"><label for="f-hood">Bairro</label><select id="f-hood" name="neighborhood"></select></div>
+              <div class="field-row">
+                <div class="field grow"><label for="f-street">Rua</label><input id="f-street" name="street" autocomplete="address-line1" maxlength="120"></div>
+                <div class="field small"><label for="f-number">Número</label><input id="f-number" name="number" inputmode="numeric" maxlength="20"></div>
+              </div>
+              <div class="field"><label for="f-comp">Complemento <em>(opcional)</em></label><input id="f-comp" name="complement" autocomplete="address-line2" maxlength="80"></div>
+              <div class="field"><label for="f-ref">Ponto de referência <em>(opcional)</em></label><input id="f-ref" name="reference" maxlength="120"></div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Pagamento</legend>
+            <div class="pays" data-payments></div>
+            <div class="field" data-change hidden><label for="f-change">Troco pra quanto? <em>(opcional)</em></label><input id="f-change" name="change_for" inputmode="decimal" placeholder="Ex.: 100"></div>
+          </fieldset>
+          <div class="field"><label for="f-notes">Observação do pedido <em>(opcional)</em></label><textarea id="f-notes" name="notes" rows="2" maxlength="300" placeholder="Ex.: interfone quebrado, pode ligar"></textarea></div>
+          <dl class="totals">
+            <div><dt>Subtotal</dt><dd data-sub>R$ 0,00</dd></div>
+            <div><dt>Entrega</dt><dd data-fee>escolha o bairro</dd></div>
+            <div class="total"><dt>Total</dt><dd data-total>R$ 0,00</dd></div>
+          </dl>
+          <p class="form-error" role="alert" data-error hidden></p>
+          <p class="closed-note" data-closed-note hidden></p>
+          <button class="btn btn-accent btn-block" type="submit" data-submit>Mandar pra chapa</button>
+          <p class="fine">Você recebe o número do pedido e acompanha tudo pela tela.</p>
+        </form>
+      </div>
+    </aside>
+  </div>
+
+  <script src="assets/js/store.js" defer></script>
+  <script src="assets/js/site.js" defer></script>
+</body>
+</html>

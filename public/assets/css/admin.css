@@ -1,0 +1,84 @@
+/* Painel da cozinha: direto, grande, fácil de tocar no balcão. */
+.admin{background:var(--canvas);animation:none}
+.login{min-height:100vh;display:grid;place-items:center;padding:24px}
+.login-card{width:min(380px,100%);padding:32px;border-radius:24px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line)}
+.login-card img{width:96px;margin:0 auto}
+.login-card h1{margin-top:18px;text-align:center;font:400 1.6rem/1.1 var(--display)}
+.login-card .btn{margin-top:20px}
+.bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:20px;padding:10px 20px;background:rgba(23,17,14,.95);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.bar img{width:56px}
+.tabs{display:flex;gap:4px;overflow-x:auto}
+.tabs button{position:relative;min-height:44px;padding:0 16px;border:0;border-radius:12px;background:transparent;font-weight:800;color:var(--text-secondary);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--paper);color:var(--ink)}
+.tab-badge{display:inline-grid;place-items:center;min-width:22px;height:22px;margin-left:6px;border-radius:11px;background:var(--accent);color:#fff;font:500 .75rem/1 var(--mono)}
+.bar-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.store-pill{padding:8px 12px;border-radius:999px;font:500 .78rem/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;background:#3a2a20;color:var(--text-secondary)}
+.store-pill.is-open{background:rgba(95,208,104,.18);color:#8fe597}
+.panes{padding:24px 20px 80px;max-width:1400px;margin:0 auto}
+.pane-head{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-bottom:22px}
+.pane-head h2{font:400 1.6rem/1.1 var(--display)}
+.pane-head p{color:var(--text-secondary);flex-basis:100%}
+.stats{display:flex;gap:12px}
+.stats div{padding:12px 16px;border-radius:14px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line)}
+.stats span{display:block;font:500 .7rem/1 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--text-secondary)}
+.stats b{display:block;margin-top:6px;font:500 1.3rem/1 var(--mono);color:var(--cheddar)}
+.seg-dark{display:flex;gap:6px;margin:0}
+.seg-dark span{box-shadow:inset 0 0 0 1.5px var(--line-strong);color:var(--text-secondary);min-height:42px;padding:0 14px}
+.seg-dark input:checked+span{background:var(--paper);color:var(--ink)}
+.orders{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;align-items:start}
+.order{padding:18px;border-radius:18px;background:var(--paper);color:var(--ink);box-shadow:0 20px 40px -24px rgba(0,0,0,.9)}
+.order.is-new{box-shadow:0 0 0 3px var(--accent),0 20px 40px -24px rgba(0,0,0,.9);animation:flash 1.2s ease 3}
+@keyframes flash{50%{box-shadow:0 0 0 8px rgba(214,61,23,.35)}}
+.order-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:10px;border-bottom:2px dashed #cdb99f}
+.order-head b{font:400 1.5rem/1 var(--display)}
+.order-head span{font:500 .82rem/1 var(--mono);color:var(--ink-2)}
+.chip{display:inline-block;padding:5px 9px;border-radius:8px;font:500 .74rem/1 var(--mono);text-transform:uppercase;letter-spacing:.04em;background:#e7d7bf}
+.chip-status{background:var(--ink);color:var(--paper)}
+.chip-paid{background:#bfe8c3;color:#1f5b25}
+.chip-unpaid{background:#fbd3c4;color:#7c1f06}
+.order-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.order-who{margin-top:10px;font-size:.95rem;line-height:1.45}
+.order-who a{color:#a02c0c;font-weight:700}
+.order .lines{margin-top:6px}
+.order .line{padding:8px 0}
+.order .totals{margin-top:8px;font-size:.92rem}
+.order-notes{margin-top:8px;padding:8px 10px;border-radius:8px;background:#f7d9b8;font-size:.9rem}
+.order-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.order-actions .btn{min-height:42px;padding:0 14px;font-size:.9rem}
+.btn-ink{--bg:var(--ink);color:var(--paper)}
+.btn-line{color:var(--ink);box-shadow:inset 0 0 0 1.5px #b9a58e}
+.empty{padding:40px 0;color:var(--text-secondary)}
+.cat-admin{margin-bottom:28px;border-radius:18px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
+.cat-admin h3{padding:14px 16px;font:400 1.2rem/1 var(--display);background:rgba(244,234,216,.05)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 120px 110px 96px;gap:10px;align-items:center;padding:10px 16px;border-top:1px solid var(--line)}
+.row input[type=text],.row input:not([type]),.row input[inputmode]{width:100%;min-height:40px;padding:0 10px;border-radius:10px;border:1.5px solid var(--line-strong);background:#140e0b}
+.row .check{justify-content:center}
+.row .btn{min-height:40px;padding:0 12px;font-size:.88rem}
+.row.is-off{opacity:.55}
+.row-name{font-weight:700}
+.row-name input{display:block;max-width:220px;margin-top:6px;min-height:34px!important;font-weight:400}
+.row-name small{display:block;color:var(--text-secondary);font-weight:400;font-size:.82rem}
+.check{display:flex;align-items:center;gap:10px;margin-top:12px;font-weight:600;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--accent)}
+.row-form{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.row-form input{min-height:44px;padding:0 12px;border-radius:12px;border:1.5px solid var(--line-strong);background:#140e0b}
+.settings{max-width:760px}
+.settings fieldset{margin:0 0 22px;padding:20px;border:0;border-radius:18px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line)}
+.settings legend{float:left;width:100%;margin-bottom:6px;font:500 .78rem/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--cheddar)}
+.settings legend+*{clear:both}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 14px}
+.saved{margin-bottom:12px;color:#8fe597;font-weight:700}
+@media (max-width:720px){
+  .bar{flex-wrap:wrap}
+  .bar-right{margin-left:0}
+  .orders{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr 90px;grid-auto-rows:auto}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+}
+@media print{
+  body *{visibility:hidden}
+  .order.print,.order.print *{visibility:visible}
+  .order.print{position:absolute;left:0;top:0;width:80mm;box-shadow:none;border-radius:0}
+  .order.print .order-actions{display:none}
+}
