@@ -239,6 +239,38 @@
     {
       "url": "https://pedido.brendi.com.br/api/imagesV2/public%2Fstores%2Fk8QuDuxyV6mOVtLuLapQ%2Fimages%2Fbanners%2Fk8QuDuxyV6mOVtLuLapQ-1784074420112.jpeg?w=1600&h=600&q=90&fit=cover&format=webp",
       "path": "media/raw/brand/banner-brendi.webp"
+    },
+    {
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260925_003746_8b119f60-7597-4e68-ae20-0ce946899a17.png",
+      "path": "media/raw/stills/banner-combo.png"
+    },
+    {
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260925_003746_2cf7bfdf-9dce-40b2-b0c1-857b7fcdc998.png",
+      "path": "media/raw/stills/banner-smash.png"
+    },
+    {
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260925_003746_c44aaeed-a876-4b6a-af65-3f110a9f76d4.png",
+      "path": "media/raw/stills/banner-batata.png"
+    },
+    {
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260925_003746_06a7bf7d-137c-4001-83b3-84b5e2adc0de.png",
+      "path": "media/raw/stills/banner-refri.png"
+    },
+    {
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260925_003746_602c951e-9222-4216-b6c2-98c400bd1642.png",
+      "path": "media/raw/stills/banner-churros.png"
+    },
+    {
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260925_003746_ea5b8fb2-a33d-4b3d-b460-87b54ae2016e.png",
+      "path": "media/raw/stills/passo-1-pao.png"
+    },
+    {
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260925_003746_3dc65bce-dd0d-4173-8282-19b10efc6099.png",
+      "path": "media/raw/stills/passo-2-chapa.png"
+    },
+    {
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260925_003746_f68da151-3c60-4bf2-853b-dedcdeb7ebc0.png",
+      "path": "media/raw/stills/passo-3-entrega.png"
     }
   ]
 }

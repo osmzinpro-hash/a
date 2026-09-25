@@ -32,7 +32,18 @@ jobs:
       - name: Download media listed in the manifest
         run: node media/sync.mjs
 
+      - name: Check for new reference pages
+        id: refs
+        run: |
+          pending=0
+          while read -r url slug; do
+            if [ -z "$url" ] || [ "${url:0:1}" = "#" ]; then continue; fi
+            [ -f "media/reference/${slug:-x}/done.txt" ] || pending=1
+          done < media/reference-urls.txt
+          echo "pending=$pending" >> "$GITHUB_OUTPUT"
+
       - name: Capture reference pages
+        if: steps.refs.outputs.pending == '1'
         continue-on-error: true
         run: |
           npm install playwright@1.49.1 --no-save --no-audit --no-fund
