@@ -325,8 +325,16 @@
       "path": "media/raw/vip-house/voz/sterling-2.mp3"
     },
     {
-      "url": "https://freepd.com/",
-      "path": "media/raw/vip-house/busca/freepd.html"
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260929_003010_f57dfa01-2c3f-483f-b5c8-46f1579aabbc.mp3",
+      "path": "media/raw/vip-house/voz/gideon-1b.mp3"
+    },
+    {
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260929_003010_8d4f83f6-e060-4f85-83da-df6dfa273cd9.mp3",
+      "path": "media/raw/vip-house/voz/gideon-1-quinta.mp3"
+    },
+    {
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260929_003010_0f8578ba-2b42-4ed4-a578-fd6ff1fe2714.mp3",
+      "path": "media/raw/vip-house/voz/gideon-1c.mp3"
     }
   ]
 }
