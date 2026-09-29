@@ -325,14 +325,6 @@
       "path": "media/raw/vip-house/voz/sterling-2.mp3"
     },
     {
-      "url": "https://freesound.org/search/?q=high+heels+walking&f=license%3A%22Creative+Commons+0%22",
-      "path": "media/raw/vip-house/busca/freesound-salto.html"
-    },
-    {
-      "url": "https://freesound.org/search/?q=cinematic+trailer&f=license%3A%22Creative+Commons+0%22",
-      "path": "media/raw/vip-house/busca/freesound-trailer.html"
-    },
-    {
       "url": "https://freepd.com/",
       "path": "media/raw/vip-house/busca/freepd.html"
     }
