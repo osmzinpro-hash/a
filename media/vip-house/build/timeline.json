@@ -1,0 +1,13 @@
+{
+  "intro": 3.6,
+  "vid_len": 13.6,
+  "vid_end": 17.2,
+  "beat": 0.4857142857,
+  "voice_a": "/tmp/claude-0/-home-user-a/8f0652ee-1482-53b0-83c8-c0d027028c46/scratchpad/voz/gideon-1b.wav",
+  "voice_b": "/tmp/claude-0/-home-user-a/8f0652ee-1482-53b0-83c8-c0d027028c46/scratchpad/voz/gideon-2.wav",
+  "voice_a_at": 4.25,
+  "voice_b_at": 17.55,
+  "final_hit": 21.61,
+  "total": 25.0,
+  "cuts": [5.08, 6.65, 8.87, 10.34, 13.17, 16.29]
+}
