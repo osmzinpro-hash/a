@@ -299,12 +299,12 @@ def outro_frame(t, sharp, soft):
     kh = t - HIT
     if 0 <= kh < 0.8:
         fl = max(fl, 0.95 * np.exp(-kh / 0.12))
-    out_first = VB + 2.05
+    out_first = VB + TL['vb_phrase2'] - 0.3
     blit(f, E['venha_para_a'], W / 2, 420 + 14 * (1 - ease_out((t - VB) / 0.7)), fade(t, VB, 0.5, out_first, 0.3))
     blit(f, E['vip_house_end'], W / 2, 545, fade(t, VB + 0.55, 0.45, out_first, 0.3),
          1.1 - 0.1 * ease_out((t - VB - 0.55) / 0.7), shine=(t - VB - 1.0) / 1.0)
     # "que aqui você é" waits above the space where the big VIP will land
-    tq = VB + 2.35
+    tq = VB + TL['vb_phrase2']
     blit(f, E['que_aqui'], W / 2, 330 + 14 * (1 - ease_out((t - tq) / 0.7)), fade(t, tq, 0.5))
     if kh >= -0.02:
         s = 1.35 - 0.35 * ease_out_back(kh / 0.4)
