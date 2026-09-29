@@ -323,6 +323,18 @@
     {
       "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JNVK7eIBFUPnFtRsNjfbmukaCp/hf_20260929_002342_eba628cb-a771-4f11-9d00-b2ca55460c1e.mp3",
       "path": "media/raw/vip-house/voz/sterling-2.mp3"
+    },
+    {
+      "url": "https://freesound.org/search/?q=high+heels+walking&f=license%3A%22Creative+Commons+0%22",
+      "path": "media/raw/vip-house/busca/freesound-salto.html"
+    },
+    {
+      "url": "https://freesound.org/search/?q=cinematic+trailer&f=license%3A%22Creative+Commons+0%22",
+      "path": "media/raw/vip-house/busca/freesound-trailer.html"
+    },
+    {
+      "url": "https://freepd.com/",
+      "path": "media/raw/vip-house/busca/freepd.html"
     }
   ]
 }
