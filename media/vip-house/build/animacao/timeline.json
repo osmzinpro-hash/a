@@ -1,0 +1,12 @@
+{
+  "beat": 0.4857142857,
+  "anim_len": 5.0,
+  "voice_a": "/tmp/claude-0/-home-user-a/8f0652ee-1482-53b0-83c8-c0d027028c46/scratchpad/story/voz-ja-vai-comecar.wav",
+  "voice_b": "/tmp/claude-0/-home-user-a/8f0652ee-1482-53b0-83c8-c0d027028c46/scratchpad/story/voz-vem-pra-ca.wav",
+  "voice_a_at": 0.15,
+  "voice_a_len": 2.95,
+  "voice_b_at": 3.2,
+  "vb_phrase2": 1.39,
+  "final_hit": 6.37,
+  "total": 7.8
+}
