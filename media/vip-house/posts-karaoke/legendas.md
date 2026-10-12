@@ -1,10 +1,10 @@
 # Posts do karaokê de quinta: @viphousesm
 
-Cinco posts de feed (4:5, 1080x1350), só imagem, em preto e dourado (estilo da casa). Fotos reais do karaokê da casa, sem imagem de IA.
+Cinco posts de feed (4:5, 1080x1350), só imagem, na linha do microfone dourado com coroa ("o palco é seu"), em preto e dourado.
 Antes de postar, confira o WhatsApp de inscrição (27) 99696-3321, que veio do post de agosto.
 
-## Seg, 18h: post1-quinta-e-dia-de-soltar-a-voz.jpg
-🎤 QUINTA É DIA DE SOLTAR A VOZ NA VIP HOUSE! 🖤💛
+## Seg, 18h: post1-toda-quinta-o-palco-e-seu.jpg
+👑🎤 TODA QUINTA, O PALCO É SEU! 🖤💛
 
 Karaokê ao vivo, palco aberto e premiação pra quem mandar bem! 🏆
 
@@ -17,9 +17,9 @@ Marca aqui quem vai subir no palco com você 👇
 
 #VIPHouse #KaraokêVIP #SãoMateusES #Karaokê #QuintaFeira
 
-## Ter, 12h: post4-no-banho-todo-mundo-e-cantor.jpg
+## Ter, 12h: post4-na-quinta-todo-mundo-e-vip.jpg
 No banho, todo mundo é cantor… 🚿🎤
-Na quinta, todo mundo é VIP! 😂🖤💛
+Na quinta, todo mundo é VIP! 👑😂🖤💛
 
 Bora tirar esse talento do chuveiro? Karaokê com premiação toda quinta, 20h30, na VIP House.
 Marca aquele amigo que canta no banho 👇
