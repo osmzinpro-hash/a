@@ -1,6 +1,6 @@
 # Posts do karaokê de quinta: @viphousesm
 
-Cinco posts de feed (4:5, 1080x1350), só imagem. Fotos reais do karaokê da casa, sem imagem de IA.
+Cinco posts de feed (4:5, 1080x1350), só imagem, em preto e dourado (estilo da casa). Fotos reais do karaokê da casa, sem imagem de IA.
 Antes de postar, confira o WhatsApp de inscrição (27) 99696-3321, que veio do post de agosto.
 
 ## Seg, 18h: post1-quinta-e-dia-de-soltar-a-voz.jpg
